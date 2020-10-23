@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "67382821317",
+    "firebase_url": "https://empprojektna-6387a.firebaseio.com",
+    "project_id": "empprojektna-6387a",
+    "storage_bucket": "empprojektna-6387a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:67382821317:android:099ef5b2c7e6baf039cbac",
+        "android_client_info": {
+          "package_name": "emp.projektna.basketballTraining"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "67382821317-sctv7i4ecrka9161bhb81t0bh2j3h428.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4FXUmO2jl-KbdMZociwrRGWJ_UHb3o0M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "67382821317-sctv7i4ecrka9161bhb81t0bh2j3h428.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
