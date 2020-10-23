@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        String bla = "bla";
         signInButton = findViewById(R.id.google_sign_in_button);
         btnSignOut = findViewById(R.id.btn_sign_out);
         mAuth = FirebaseAuth.getInstance();
@@ -106,7 +106,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
     private  void updateUI(FirebaseUser firebaseUser) {
