@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private String TAG = "MainActivity";
     private FirebaseAuth mAuth;
 
-    private Button btnSignOut;
+
     private Button btnSignIn;
 
     private EditText tf_email;
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Buttons connections with layout
         btnSignIn = findViewById(R.id.btn_sign_in);
-        btnSignOut = findViewById(R.id.btn_sign_out);
+
 
         //EditText connections with layout
         tf_email = findViewById(R.id.tf_email);
@@ -89,14 +89,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        btnSignOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mAuth.signOut();
-                Toast.makeText(MainActivity.this,"Signed out", Toast.LENGTH_LONG).show();
-                btnSignOut.setVisibility(View.INVISIBLE);
-            }
-        });
+
 
         tv_signUp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,12 +109,12 @@ public class MainActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     // Sign in success, update UI with the signed-in user's information
                     FirebaseUser user = mAuth.getCurrentUser();
-                    checkSignInEmail(user);
+                    updateUI(user,false);
                 } else {
                     // If sign in fails, display a message to the user.
                     Toast.makeText(MainActivity.this, "Authentication failed.",
                             Toast.LENGTH_SHORT).show();
-                    checkSignInEmail(null);
+                    updateUI(null,false);
                 }
             }
         });
@@ -163,38 +156,40 @@ public class MainActivity extends AppCompatActivity {
                 if(task.isSuccessful()){
                     Toast.makeText(MainActivity.this,"Successful", Toast.LENGTH_LONG).show();
                     FirebaseUser user = mAuth.getCurrentUser();
-                    checkSignInGoogle(user);
+                    updateUI(user, true);
                 }
                 else {
-                    Toast.makeText(MainActivity.this,"Not successfull", Toast.LENGTH_LONG).show();
-                    checkSignInGoogle(null);
+                    Toast.makeText(MainActivity.this,"Not successful", Toast.LENGTH_LONG).show();
+                    updateUI(null, true);
                 }
             }
         });
     }
 
-    private void checkSignInEmail(FirebaseUser firebaseUser) {
-        if(firebaseUser != null) {
-            updateUI();
+    private  void updateUI(FirebaseUser firebaseUser, boolean googleSignIn) {
+        if(googleSignIn) {
+            GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
+            if(account != null)
+            {
+                String name = account.getDisplayName();
+                String personGivenName = account.getGivenName();
+
+                Toast.makeText(MainActivity.this, "Welcome "+ name, Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(MainActivity.this, NewsFeedActivity.class);
+                startActivity(intent);
+            }
+            else{
+                Toast.makeText(MainActivity.this, "Login failed", Toast.LENGTH_LONG).show();
+            }
+        }
+        else if(firebaseUser != null){
+            Toast.makeText(MainActivity.this, "Welcome", Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(MainActivity.this, NewsFeedActivity.class);
+            startActivity(intent);
         }
         else{
             Toast.makeText(MainActivity.this, "Login failed", Toast.LENGTH_LONG).show();
         }
-    }
-
-    private void checkSignInGoogle(FirebaseUser firebaseUser){
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
-        if(account != null)
-        {
-            updateUI();
-        }
-        else {
-            Toast.makeText(MainActivity.this, "Login failed", Toast.LENGTH_LONG).show();
-        }
-    }
-    private void updateUI() {
-        Toast.makeText(MainActivity.this, "Welcome", Toast.LENGTH_LONG).show();
-        btnSignOut.setVisibility((View.VISIBLE));
 
     }
 }

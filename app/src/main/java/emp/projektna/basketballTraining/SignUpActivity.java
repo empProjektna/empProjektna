@@ -25,8 +25,8 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText tf_password;
     private EditText tf_password2;
 
-
     private Button btnSignUp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
