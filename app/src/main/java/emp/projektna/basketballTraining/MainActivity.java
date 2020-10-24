@@ -116,12 +116,12 @@ public class MainActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     // Sign in success, update UI with the signed-in user's information
                     FirebaseUser user = mAuth.getCurrentUser();
-                    updateUI(user,false);
+                    checkSignInEmail(user);
                 } else {
                     // If sign in fails, display a message to the user.
                     Toast.makeText(MainActivity.this, "Authentication failed.",
                             Toast.LENGTH_SHORT).show();
-                    updateUI(null,false);
+                    checkSignInEmail(null);
                 }
             }
         });
@@ -163,38 +163,38 @@ public class MainActivity extends AppCompatActivity {
                 if(task.isSuccessful()){
                     Toast.makeText(MainActivity.this,"Successful", Toast.LENGTH_LONG).show();
                     FirebaseUser user = mAuth.getCurrentUser();
-                    updateUI(user, true);
+                    checkSignInGoogle(user);
                 }
                 else {
                     Toast.makeText(MainActivity.this,"Not successfull", Toast.LENGTH_LONG).show();
-                    updateUI(null, true);
+                    checkSignInGoogle(null);
                 }
             }
         });
     }
 
-    private  void updateUI(FirebaseUser firebaseUser, boolean googleSignIn) {
-        if(googleSignIn) {
-            GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
-            if(account != null)
-            {
-                String name = account.getDisplayName();
-                String personGivenName = account.getGivenName();
-
-                Toast.makeText(MainActivity.this, "Welcome "+ name, Toast.LENGTH_LONG).show();
-                btnSignOut.setVisibility((View.VISIBLE));
-            }
-            else{
-                Toast.makeText(MainActivity.this, "Login failed", Toast.LENGTH_LONG).show();
-            }
-        }
-        else if(firebaseUser != null){
-            Toast.makeText(MainActivity.this, "Welcome", Toast.LENGTH_LONG).show();
-            btnSignOut.setVisibility((View.VISIBLE));
+    private void checkSignInEmail(FirebaseUser firebaseUser) {
+        if(firebaseUser != null) {
+            updateUI();
         }
         else{
             Toast.makeText(MainActivity.this, "Login failed", Toast.LENGTH_LONG).show();
         }
+    }
+
+    private void checkSignInGoogle(FirebaseUser firebaseUser){
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
+        if(account != null)
+        {
+            updateUI();
+        }
+        else {
+            Toast.makeText(MainActivity.this, "Login failed", Toast.LENGTH_LONG).show();
+        }
+    }
+    private void updateUI() {
+        Toast.makeText(MainActivity.this, "Welcome", Toast.LENGTH_LONG).show();
+        btnSignOut.setVisibility((View.VISIBLE));
 
     }
 }
