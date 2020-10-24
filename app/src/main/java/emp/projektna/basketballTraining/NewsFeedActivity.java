@@ -2,6 +2,7 @@ package emp.projektna.basketballTraining;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -25,7 +26,9 @@ public class NewsFeedActivity extends AppCompatActivity {
             public void onClick(View v) {
                 mAuth.signOut();
                 Toast.makeText(NewsFeedActivity.this,"Signed out", Toast.LENGTH_LONG).show();
-                btnSignOut.setVisibility(View.INVISIBLE);
+                //btnSignOut.setVisibility(View.INVISIBLE);
+                Intent intent = new Intent(NewsFeedActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
     }
