@@ -18,6 +18,7 @@ public class SecondMainActivity extends AppCompatActivity {
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FeedFragment()).commit();
 
     }
 
@@ -31,7 +32,7 @@ public class SecondMainActivity extends AppCompatActivity {
                     selectedFragment = new AddFragment();
                     break;
                 case R.id.nav_home:
-                    selectedFragment = new HomeFragment();
+                    selectedFragment = new FeedFragment();
                     break;
                 case R.id.nav_profile:
                     selectedFragment = new ProfileFragment();
