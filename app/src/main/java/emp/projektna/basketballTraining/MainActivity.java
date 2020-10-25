@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         if (FirebaseAuth.getInstance().getCurrentUser() != null) {
-            Intent intent = new Intent(MainActivity.this, NewsFeedActivity.class);
+            Intent intent = new Intent(MainActivity.this, SecondMainActivity.class);
             startActivity(intent);
         }
 
@@ -181,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
                 String personGivenName = account.getGivenName();
 
                 Toast.makeText(MainActivity.this, "Welcome "+ name, Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(MainActivity.this, NewsFeedActivity.class);
+                Intent intent = new Intent(MainActivity.this, SecondMainActivity.class);
                 startActivity(intent);
             }
             else{
@@ -190,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
         }
         else if(firebaseUser != null){
             Toast.makeText(MainActivity.this, "Welcome", Toast.LENGTH_LONG).show();
-            Intent intent = new Intent(MainActivity.this, NewsFeedActivity.class);
+            Intent intent = new Intent(MainActivity.this, SecondMainActivity.class);
             startActivity(intent);
         }
         else{
