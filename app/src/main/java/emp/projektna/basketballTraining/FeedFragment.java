@@ -29,7 +29,7 @@ public class FeedFragment extends Fragment {
         ArrayAdapter listViewAdapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, menuItems);
 
         listView.setAdapter(listViewAdapter);
-*/
+    */
         return view;
     }
 }
