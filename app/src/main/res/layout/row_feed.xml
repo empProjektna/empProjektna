@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:tools="http://schemas.android.com/tools"
-    android:padding="10dp"
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/darkmode_grey"
+    android:layout_marginBottom="10dp">
 
 
     <RelativeLayout
+        android:padding="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/header">
@@ -31,14 +34,16 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Andraž Anderle" />
+                android:text="Andraž Anderle"
+                android:id="@+id/display_name"/>
 
             <TextView
                 android:paddingTop="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Yesterday at 7:31 AM"
-                android:textSize="11dp"/>
+                android:textSize="11dp"
+                android:id="@+id/display_time"/>
         </LinearLayout>
 
 
@@ -51,7 +56,7 @@
         android:layout_below="@id/header"
         android:id="@+id/stats"
         android:orientation="horizontal"
-        android:padding="5dp">
+        android:paddingHorizontal="10dp">
 
         <!-- PROSTI METI  -->
         <LinearLayout
@@ -144,16 +149,45 @@
         android:src="@drawable/court2" />
 
 
+    <RelativeLayout
+        android:id="@+id/comments_likes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/court"
+        android:orientation="horizontal"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="5dp">
+
+        <TextView
+            android:id="@+id/likes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="9k likes"
+            android:layout_alignParentLeft="true"/>
+
+        <TextView
+            android:id="@+id/comments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1k coments"
+            android:layout_alignParentRight="true"/>
+
+
+    </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
-        android:layout_below="@id/court"
+        android:layout_below="@id/comments_likes"
         android:weightSum="3"
-        android:background="#121212">
+        android:background="@color/light_grey"
+
+        >
 
         <ImageButton
-            android:backgroundTint="@color/black"
+
+            android:backgroundTint="@color/light_grey"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -164,7 +198,7 @@
             android:layout_height="30dp"
             android:background="@color/white"/>
         <ImageButton
-            android:backgroundTint="@color/black"
+            android:backgroundTint="@color/light_grey"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
@@ -175,7 +209,7 @@
             android:layout_height="30dp"
             android:background="@color/white"/>
         <ImageButton
-            android:backgroundTint="@color/black"
+            android:backgroundTint="@color/light_grey"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"

@@ -4,10 +4,10 @@
     <string name="create_training">Create training</string>
 
     <string-array name="exercise_type">
-        <item>Shooting</item>
-        <item>Dribbling</item>
-        <item>Condition</item>
-        <item>Physical</item>
+        <item><font fgcolor='#FFFFFF'>Shooting</font></item>
+        <item><font fgcolor='#FFFFFF'>Dribbling</font></item>
+        <item><font fgcolor='#FFFFFF'>Condition</font></item>
+        <item><font fgcolor='#FFFFFF'>Physical</font></item>
     </string-array>
 </resources>
 
