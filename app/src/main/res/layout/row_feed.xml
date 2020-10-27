@@ -64,8 +64,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Free throws"
-                android:textSize="11dp"
-                />
+                android:textColor="@color/white"
+                android:textSize="11dp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

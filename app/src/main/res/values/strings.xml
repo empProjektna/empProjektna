@@ -1,5 +1,13 @@
 <resources>
     <string name="app_name">empProjektna</string>
     <string name="sign_in">Sign In</string>
+    <string name="create_training">Create training</string>
+
+    <string-array name="exercise_type">
+        <item>Shooting</item>
+        <item>Dribbling</item>
+        <item>Condition</item>
+        <item>Physical</item>
+    </string-array>
 </resources>
 

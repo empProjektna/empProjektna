@@ -185,7 +185,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
             else{
-                Toast.makeText(MainActivity.this, "Login failed", Toast.LENGTH_LONG).show();
+                Toast.makeText(MainActivity.this,"Login failed", Toast.LENGTH_LONG).show();
             }
         }
         else if(firebaseUser != null){
