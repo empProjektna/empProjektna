@@ -38,22 +38,16 @@ public class FeedFragment extends Fragment {
         recyclerView.setAdapter(adapterFeed);
 
         populateRecyclerView();
-    /*
-        ListView listView = view.findViewById(R.id.lisViewFeed);
 
-        String[] menuItems = {"blabla", "blabla2", "blabla3"};
-
-        ArrayAdapter listViewAdapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, menuItems);
-
-        listView.setAdapter(listViewAdapter);
-    */
         return view;
     }
 
+
+    // TODO: iz baze črpaj podatke in nafilaj RecyclerView
     public void  populateRecyclerView() {
-        ModelFeed modelFeed = new ModelFeed(1, 5, "Andraž Anderle", "17:59", 69);
+        ModelFeed modelFeed = new ModelFeed(1, 5, 100, 100, 60, "50m 16s","Andraž Anderle", "8:00");
         modelFeedArrayList.add(modelFeed);
-        modelFeed = new ModelFeed(2, 420, "Aleksandar Georgiev", "16:20", 11);
+        modelFeed = new ModelFeed(2, 10, 42, 100, 50, "60m 42s", "Aleksandar Georgiev", "8:00");
         modelFeedArrayList.add(modelFeed);
 
         adapterFeed.notifyDataSetChanged();

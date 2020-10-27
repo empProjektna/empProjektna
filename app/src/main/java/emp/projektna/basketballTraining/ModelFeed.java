@@ -2,15 +2,42 @@ package emp.projektna.basketballTraining;
 
 public class ModelFeed {
 
-    int id, comments, likes;
-    String name, time;
+    int id, comments, likes, free_throws, threes;
+    String name, time, duration;
 
-    public ModelFeed(int id, int comments, String name, String time, int likes) {
+    public ModelFeed(int id, int comments, int likes, int free_throws, int threes, String duration, String name, String time) {
         this.id = id;
         this.comments = comments;
+        this.likes = likes;
+        this.free_throws = free_throws;
+        this.threes = threes;
+        this.duration = duration;
         this.name = name;
         this.time = time;
-        this.likes = likes;
+    }
+
+    public int getFree_throws() {
+        return free_throws;
+    }
+
+    public void setFree_throws(int free_throws) {
+        this.free_throws = free_throws;
+    }
+
+    public int getThrees() {
+        return threes;
+    }
+
+    public void setThrees(int threes) {
+        this.threes = threes;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
     }
 
     public int getLikes() {

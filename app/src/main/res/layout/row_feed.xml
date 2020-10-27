@@ -74,6 +74,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="35"
+                android:id="@+id/free_throws"
                 />
 
         </LinearLayout>
@@ -100,6 +101,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="15"
+                android:id="@+id/threes"
                 />
 
         </LinearLayout>
@@ -126,6 +128,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="56m 47s"
+                android:id="@+id/duration"
                 />
 
         </LinearLayout>

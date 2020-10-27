@@ -44,6 +44,10 @@ public class AdapterFeed extends RecyclerView.Adapter<AdapterFeed.MyViewHolder> 
         holder.tv_comments.setText(modelFeed.getComments() + " comments");
         holder.tv_likes.setText(modelFeed.getLikes() + " likes");
         holder.tv_time.setText(modelFeed.getTime());
+        holder.tv_threes.setText(String.valueOf(modelFeed.getThrees()));
+        holder.tv_free_throws.setText(String.valueOf(modelFeed.getFree_throws()));
+        holder.tv_duration.setText(modelFeed.getDuration());
+
     }
 
     @Override
@@ -53,7 +57,7 @@ public class AdapterFeed extends RecyclerView.Adapter<AdapterFeed.MyViewHolder> 
 
 
     public class  MyViewHolder extends RecyclerView.ViewHolder{
-        TextView tv_name, tv_time, tv_likes, tv_comments;
+        TextView tv_name, tv_time, tv_likes, tv_comments, tv_free_throws, tv_threes, tv_duration;
         ImageView imgView_profilePic;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -65,6 +69,9 @@ public class AdapterFeed extends RecyclerView.Adapter<AdapterFeed.MyViewHolder> 
             tv_time = (TextView)itemView.findViewById(R.id.display_time);
             tv_likes = (TextView)itemView.findViewById(R.id.likes);
             tv_comments = (TextView)itemView.findViewById(R.id.comments);
+            tv_free_throws = (TextView)itemView.findViewById(R.id.free_throws);
+            tv_threes = (TextView)itemView.findViewById(R.id.threes);
+            tv_duration = (TextView)itemView.findViewById(R.id.duration);
 
         }
     }
