@@ -1,13 +1,24 @@
 <resources>
     <string name="app_name">empProjektna</string>
     <string name="sign_in">Sign In</string>
-    <string name="create_training">Create training</string>
+    <string name="Create_exercise">Create exercise</string>
+    <string name="exercise_type_sp">Choose exercise</string>
 
     <string-array name="exercise_type">
-        <item><font fgcolor='#FFFFFF'>Shooting</font></item>
-        <item><font fgcolor='#FFFFFF'>Dribbling</font></item>
-        <item><font fgcolor='#FFFFFF'>Condition</font></item>
-        <item><font fgcolor='#FFFFFF'>Physical</font></item>
+        <item>Choose exercise:</item>
+        <item>Shooting</item>
+        <item>Dribbling</item>
+        <item>Condition</item>
+        <item>Physical</item>
     </string-array>
+
+    <string name="exercise_tw">Exercise</string>
+    <string name="exercise_name_tw">Name: </string>
+    <string name="exercise_length_tw">Length: </string>
+    <string name="exercise_description_tw">Descripition: </string>
+    <string name="exercise_position_tw">Position: </string>
+    <string name="exercise_repeats_tw">Repeats: </string>
+    <string name="exercise_timer_cb">Timer</string>
+
 </resources>
 
