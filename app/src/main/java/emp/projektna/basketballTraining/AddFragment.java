@@ -71,9 +71,10 @@ public class AddFragment extends Fragment {
 
 
         /*
-        * Button
+        * Buttons
         * */
         Button btn_create_exercise = (Button) view.findViewById(R.id.btn_add_exercise);
+        Button btn_finish_training = (Button) view.findViewById(R.id.btn_finish_training);
 
         Training training = new Training();
         btn_create_exercise.setOnClickListener(new View.OnClickListener() {
@@ -101,8 +102,13 @@ public class AddFragment extends Fragment {
                 Exercise exercise = new Exercise(name,length,position,description,repeats,timer);
                 training.addTraining(exercise);
                 spinner.setSelection(0);
+
             }
         });
+
+
+
+
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
@@ -122,6 +128,8 @@ public class AddFragment extends Fragment {
                     et_exercise_repeats.setVisibility(View.INVISIBLE);
                     cb_exercise_timer.setVisibility(View.INVISIBLE);
                     btn_create_exercise.setVisibility(View.INVISIBLE);
+                    if(training.numberOfExercises() != 0)
+                        btn_finish_training.setVisibility(View.VISIBLE);
                 } else {
                     tw_exercise_name.setVisibility(View.VISIBLE);
                     tw_exercise_length.setVisibility(View.VISIBLE);
@@ -132,6 +140,8 @@ public class AddFragment extends Fragment {
                     et_exercise_description.setVisibility(View.VISIBLE);
                     et_exercise_repeats.setVisibility(View.VISIBLE);
                     cb_exercise_timer.setVisibility(View.VISIBLE);
+
+                    btn_finish_training.setVisibility(View.INVISIBLE);
 
                     if( position == 1) {
                         tw_exercise_position.setVisibility(View.VISIBLE);

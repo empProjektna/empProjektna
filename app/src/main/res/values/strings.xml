@@ -3,6 +3,7 @@
     <string name="sign_in">Sign In</string>
     <string name="Create_exercise">Create exercise</string>
     <string name="exercise_type_sp">Choose exercise</string>
+    <string name="finish_training">Finish</string>
 
     <string-array name="exercise_type">
         <item>Choose exercise:</item>
