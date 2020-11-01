@@ -1,11 +1,9 @@
 package emp.projektna.basketballTraining;
 
 import android.content.Context;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -63,7 +61,7 @@ public class AdapterFeed extends RecyclerView.Adapter<AdapterFeed.MyViewHolder> 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            imgView_profilePic = (ImageView)itemView.findViewById(R.id.profile_image);
+            imgView_profilePic = (ImageView)itemView.findViewById(R.id.row_profile_image);
 
             tv_name = (TextView)itemView.findViewById(R.id.display_name);
             tv_time = (TextView)itemView.findViewById(R.id.display_time);

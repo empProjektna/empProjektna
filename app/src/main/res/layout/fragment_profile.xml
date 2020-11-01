@@ -6,13 +6,162 @@
     android:orientation="vertical"
     android:background="?attr/colorSecondary">
         <androidx.appcompat.widget.Toolbar
+            android:background="@color/black"
             android:elevation="4dp"
             app:titleTextColor="?attr/colorOnSecondary"
             app:title="Profile"
             android:id="@+id/profile_toolbar_edit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:menu="@menu/profile_toolbar"
-            >
-        </androidx.appcompat.widget.Toolbar>
+            app:menu="@menu/profile_toolbar"/>
+
+        <LinearLayout
+            android:id="@+id/edit_profile_avatarName_row"
+            android:padding="20dp"
+            android:layout_below="@id/profile_toolbar_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:id="@+id/edit_profile_avatar"
+                    android:src="@mipmap/ic_launcher_round"
+                    />
+                <TextView
+                    android:paddingLeft="15dp"
+                    android:id="@+id/profile_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ime Priimek"
+                    android:textColor="?attr/colorOnSecondary"
+                    android:textSize="20sp"
+                    />
+        </LinearLayout>
+
+
+        <View
+            android:id="@+id/edit_profile_divider1"
+            android:layout_marginHorizontal="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/white"
+            android:layout_below="@id/edit_profile_avatarName_row"/>
+
+        <LinearLayout
+            android:layout_below="@+id/edit_profile_divider1"
+            android:id="@+id/edit_profile_followersFollowing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="20dp">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="10dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/edit_profile_followers"
+                            android:text="0"
+                            android:textColor="@color/white"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Followers"
+                            android:textColor="@color/white"
+                            android:textSize="11dp" />
+                </LinearLayout>
+                <View
+                    android:layout_gravity="center"
+                    android:layout_width="1dp"
+                    android:layout_height="20dp"
+                    android:background="@color/white"/>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="10dp">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/edit_profile_following"
+                            android:text="0"
+                            android:textColor="@color/white"
+                            />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Following"
+                            android:textColor="@color/white"
+                            android:textSize="11dp" />
+                </LinearLayout>
+        </LinearLayout>
+        <View
+            android:id="@+id/edit_profile_divider2"
+            android:layout_marginHorizontal="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/white"
+            android:layout_below="@id/edit_profile_followersFollowing"/>
+
+        <LinearLayout
+            android:paddingTop="10dp"
+            android:paddingHorizontal="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/edit_profile_divider2">
+
+             <com.google.android.material.card.MaterialCardView
+
+                 android:layout_width="match_parent"
+                 android:clickable="true"
+                 android:focusable="true"
+                 app:rippleColor="@color/design_default_color_primary_dark"
+                 app:cardBackgroundColor="@color/light_grey"
+                 android:layout_height="40dp">
+
+                     <RelativeLayout
+                         android:layout_width="match_parent"
+                         android:layout_height="match_parent"
+                         android:orientation="horizontal">
+
+                     <ImageView
+                         android:layout_alignParentLeft="true"
+                         android:layout_centerInParent="true"
+                         android:id="@+id/ic_basketball"
+                         android:layout_width="20dp"
+                         android:layout_height="20dp"
+                         android:src="@drawable/ic_basketball"
+                         />
+
+                             <TextView
+                                 android:layout_width="wrap_content"
+                                 android:layout_height="wrap_content"
+                                 android:layout_toEndOf="@id/ic_basketball"
+                                 android:layout_centerVertical="true"
+                                 android:paddingLeft="10dp"
+                                 android:text="Trainings"
+                                 android:textColor="@color/white" />
+
+                             <ImageView
+                                 android:layout_alignParentRight="true"
+                                 android:layout_centerVertical="true"
+                                 android:paddingRight="10dp"
+                                 android:id="@+id/ic_arrow"
+                                 android:layout_width="20dp"
+                                 android:layout_height="20dp"
+                                 android:layout_gravity="right"
+                                 android:src="@drawable/ic_arrow" />
+                     </RelativeLayout>
+
+
+             </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+
+
 </RelativeLayout>
