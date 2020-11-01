@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/darkmode_grey"
+    android:background="@color/dark_grey"
     android:layout_marginBottom="10dp">
 
 
@@ -34,14 +34,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Andraž Anderle"
                 android:id="@+id/display_name"/>
 
             <TextView
                 android:paddingTop="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Yesterday at 7:31 AM"
                 android:textSize="11dp"
                 android:id="@+id/display_time"/>
         </LinearLayout>
@@ -73,7 +71,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="35"
                 android:id="@+id/free_throws"
                 />
 
@@ -100,7 +97,6 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="15"
                 android:id="@+id/threes"
                 />
 
@@ -127,14 +123,10 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="56m 47s"
                 android:id="@+id/duration"
                 />
 
         </LinearLayout>
-
-
-
 
 
     </LinearLayout>
@@ -165,14 +157,12 @@
             android:id="@+id/likes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="9k likes"
             android:layout_alignParentLeft="true"/>
 
         <TextView
             android:id="@+id/comments"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="1k coments"
             android:layout_alignParentRight="true"/>
 
 

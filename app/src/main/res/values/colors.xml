@@ -9,6 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="nice_purple">#5000ca</color>
     <color name="light_grey">#222222</color>
-    <color name="darkmode_grey">#121212</color>
+    <color name="dark_grey">#121212</color>
+    <color name="nice_brown">#389393</color>
 
 </resources>

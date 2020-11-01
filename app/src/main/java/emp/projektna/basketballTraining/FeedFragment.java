@@ -49,7 +49,6 @@ public class FeedFragment extends Fragment {
         modelFeedArrayList.add(modelFeed);
         modelFeed = new ModelFeed(2, 10, 42, 100, 50, "60m 42s", "Aleksandar Georgiev", "8:00");
         modelFeedArrayList.add(modelFeed);
-
         adapterFeed.notifyDataSetChanged();
     }
 }
