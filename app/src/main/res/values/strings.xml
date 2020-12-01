@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">empProjektna</string>
+    <string name="app_name">Swish</string>
     <string name="sign_in">Sign In</string>
     <string name="Create_exercise">Create exercise</string>
     <string name="exercise_type_sp">Choose exercise</string>
@@ -20,6 +20,11 @@
     <string name="exercise_position_tw">Position: </string>
     <string name="exercise_repeats_tw">Repeats: </string>
     <string name="exercise_timer_cb">Timer</string>
+    <string name="app_title">Swish</string>
+    <string name="register_text">New User? Register Now</string>
+    <string name="sign_in_text">Sign in</string>
+    <string name="training_name">Training name:</string>
+    <string name="hint_training_title">Title your training</string>
 
 </resources>
 

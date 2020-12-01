@@ -154,16 +154,20 @@
         android:paddingVertical="5dp">
 
         <TextView
+            android:clickable="true"
             android:id="@+id/likes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"/>
+            android:layout_alignParentLeft="true"
+            android:focusable="true" />
 
         <TextView
+            android:clickable="true"
             android:id="@+id/comments"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"/>
+            android:layout_alignParentRight="true"
+            android:focusable="true" />
 
 
     </RelativeLayout>
@@ -174,13 +178,13 @@
         android:orientation="horizontal"
         android:layout_below="@id/comments_likes"
         android:weightSum="3"
-        android:background="@color/light_grey"
+        android:background="@color/black"
 
         >
 
         <ImageButton
 
-            android:backgroundTint="@color/light_grey"
+            android:backgroundTint="@color/dark_grey"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -191,7 +195,7 @@
             android:layout_height="30dp"
             android:background="@color/white"/>
         <ImageButton
-            android:backgroundTint="@color/light_grey"
+            android:backgroundTint="@color/dark_grey"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"
@@ -202,7 +206,7 @@
             android:layout_height="30dp"
             android:background="@color/white"/>
         <ImageButton
-            android:backgroundTint="@color/light_grey"
+            android:backgroundTint="@color/dark_grey"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="match_parent"

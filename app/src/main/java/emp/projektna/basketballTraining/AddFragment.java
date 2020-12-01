@@ -1,9 +1,6 @@
 package emp.projektna.basketballTraining;
 
-import android.content.Context;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,24 +9,13 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.annotation.StringRes;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.Fragment;
-
-import com.google.android.gms.common.internal.StringResourceValueReader;
-
-import org.w3c.dom.Text;
-
-import java.util.zip.Inflater;
-
-import static androidx.core.content.ContextCompat.getSystemService;
 
 public class AddFragment extends Fragment {
 
@@ -40,6 +26,7 @@ public class AddFragment extends Fragment {
         Spinner spinner = (Spinner) view.findViewById(R.id.exercise_type_sp);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.exercise_type, android.R.layout.simple_spinner_item);
+
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
@@ -59,9 +46,12 @@ public class AddFragment extends Fragment {
 
         EditText et_exercise_name = (EditText) view.findViewById(R.id.et_exercise_name);
         EditText et_exercise_length = (EditText) view.findViewById(R.id.et_exercise_length);
-        EditText et_exercise_description = (EditText) view.findViewById(R.id.et_exercise_descripiton);
+        EditText et_exercise_description = (EditText) view.findViewById(R.id.et_exercise_description);
         EditText et_exercise_position = (EditText) view.findViewById(R.id.et_exercise_position);
         EditText et_exercise_repeats = (EditText) view.findViewById(R.id.et_exercise_repeats);
+
+
+        LinearLayout linearLayout = (LinearLayout) view. findViewById(R.id.position_layout);
 
         /*
         * Check box
@@ -112,9 +102,7 @@ public class AddFragment extends Fragment {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
-
-
-                Toast.makeText(getActivity(), String.valueOf(position), Toast.LENGTH_LONG).show();
+                //Toast.makeText(getActivity(), String.valueOf(position), Toast.LENGTH_LONG).show();
                 if (position == 0) {
                     tw_exercise_name.setVisibility(View.INVISIBLE);
                     tw_exercise_length.setVisibility(View.INVISIBLE);
@@ -143,13 +131,15 @@ public class AddFragment extends Fragment {
 
                     btn_finish_training.setVisibility(View.INVISIBLE);
 
-                    if( position == 1) {
+                    if(position == 1) {
                         tw_exercise_position.setVisibility(View.VISIBLE);
                         et_exercise_position.setVisibility(View.VISIBLE);
+                        linearLayout.setVisibility(View.VISIBLE);
                     }
                     else {
-                        tw_exercise_position.setVisibility(View.INVISIBLE);
-                        et_exercise_position.setVisibility(View.INVISIBLE);
+                        //tw_exercise_position.setVisibility(View.GONE);
+                        //et_exercise_position.setVisibility(View.GONE);
+                        linearLayout.setVisibility(View.GONE);
                     }
                     btn_create_exercise.setVisibility(View.VISIBLE);
                 }
