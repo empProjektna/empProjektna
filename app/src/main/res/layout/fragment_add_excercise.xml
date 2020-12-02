@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_grey"
+    >
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/add_exercise_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black"
+        android:elevation="4dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/add_exercise_toolbar"
+        app:title="Add exercise"
+        app:titleTextColor="?attr/colorOnSecondary"/>
+
+
+    <LinearLayout
+        android:layout_marginHorizontal="15sp"
+        android:layout_below="@+id/add_exercise_toolbar"
+        android:id="@+id/clExercise0"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <Spinner
+            android:layout_marginTop="10dp"
+            android:id="@+id/exercise_type_sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:visibility="visible"
+            android:layout_gravity="right"
+            />
+        <LinearLayout
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:id="@+id/tw_exercise_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/exercise_name_tw"
+                android:textColor="@color/white"
+                android:visibility="gone"
+                tools:visibility="visible" />
+            <EditText
+                android:layout_marginStart="10dp"
+                android:id="@+id/et_exercise_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:textColor="@color/white"
+                android:background="@drawable/edit_text_bottom_line"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:textCursorDrawable="@null"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tw_exercise_length"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/exercise_length_tw"
+                android:textColor="@color/white"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+            <EditText
+                android:layout_marginStart="10dp"
+                android:id="@+id/et_exercise_length"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:textColor="@color/white"
+                android:background="@drawable/edit_text_bottom_line"
+                android:visibility="gone"
+                tools:visibility="visible"
+                android:textCursorDrawable="@null"/>
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tw_exercise_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/exercise_description_tw"
+                android:visibility="gone"
+                android:textColor="@color/white"
+                tools:visibility="visible"/>
+
+
+            <EditText
+                android:layout_marginStart="10dp"
+                android:id="@+id/et_exercise_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:textColor="@color/white"
+                android:background="@drawable/edit_text_bottom_line"
+                android:visibility="gone"
+                tools:visibility="visible" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/position_layout"
+            >
+
+            <TextView
+                android:id="@+id/tw_exercise_position"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/exercise_position_tw"
+                android:textColor="@color/white"
+                android:visibility="gone"
+                tools:visibility="visible" />
+            <EditText
+                android:layout_marginStart="10dp"
+                android:id="@+id/et_exercise_position"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:background="@drawable/edit_text_bottom_line"
+                android:textColor="@color/white"
+                android:visibility="gone"
+                tools:visibility="visible" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:padding="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tw_exercise_repeats"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/exercise_repeats_tw"
+                android:textColor="@color/white"
+                android:visibility="gone"
+                tools:visibility="visible" />
+            <EditText
+                android:layout_marginStart="10dp"
+                android:id="@+id/et_exercise_repeats"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:textColor="@color/white"
+                android:background="@drawable/edit_text_bottom_line"
+                android:visibility="gone"
+                tools:visibility="visible" />
+        </LinearLayout>
+
+        <CheckBox
+            android:id="@+id/cb_exercise_timer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/exercise_timer_cb"
+            android:textColor="@color/white"
+            android:visibility="gone"
+            tools:visibility="visible" />
+        <Button
+            android:id="@+id/btn_add_exercise"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="124dp"
+            android:text="@string/Create_exercise"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <Button
+            android:id="@+id/btn_finish_training"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/finish_training"
+            android:visibility="gone"
+            tools:visibility="visible" />
+    </LinearLayout>
+</RelativeLayout>

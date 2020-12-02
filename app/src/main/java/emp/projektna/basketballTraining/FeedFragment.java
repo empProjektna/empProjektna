@@ -51,4 +51,9 @@ public class FeedFragment extends Fragment {
         modelFeedArrayList.add(modelFeed);
         adapterFeed.notifyDataSetChanged();
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+    }
 }

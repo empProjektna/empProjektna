@@ -1,12 +1,5 @@
 package emp.projektna.basketballTraining;
 
-import android.util.Log;
-import android.widget.Toast;
-
-import androidx.annotation.NonNull;
-
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
@@ -17,29 +10,45 @@ import java.util.Map;
 public class Training {
 
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private List<Exercise> exercises = new ArrayList<>();
+    static private Map<String, List<ModelExercise>> trainigs = new HashMap<>();
 
-    public void addTraining(Exercise exercise){
-        exercises.add(exercise);
+
+    public void addTraining(String id){
+        List<ModelExercise> exercises = new ArrayList<>();
+        trainigs.put(id, exercises);
     }
 
-    public int numberOfExercises(){
-        return exercises.size();
+    public void addExercise(ModelExercise exercise, String id){
+        List<ModelExercise> exercises = trainigs.get(id);
+        exercises.add(exercise);
+        trainigs.put(id, exercises);
+    }
+
+    public String out(String id) {
+        return String.valueOf(trainigs.get(id).size());
+    }
+
+   /* public int numberOfTrainings(){
+        return trainigs.size();
     }
 
     public void deleteAllExercises() {
-        exercises.clear();
+        trainigs.clear();
     }
 
     public void deleteExerciseAtIndex(int i) {
-        exercises.remove(i);
+        trainigs.remove(i);
     }
 
     public Exercise getExerciseWithIndex(int i){
-        return exercises.get(i);
+        return trainigs.get(i);
     }
+    */
+
 
     public void saveTraining(){
+
+        /*
         Map<String, Object> databaseInput = new HashMap<>();
         for (Exercise exercise: exercises) {
             databaseInput.put("NAME", exercise.getName());
@@ -51,7 +60,7 @@ public class Training {
         }
             this.deleteAllExercises();
         // TODO
-
+*/
 /*
         db.collection("Trainings").document("Training").set(databaseInput)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
