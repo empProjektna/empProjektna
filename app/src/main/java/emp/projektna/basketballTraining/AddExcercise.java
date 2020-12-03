@@ -205,7 +205,7 @@ public class AddExcercise extends Fragment {
                         boolean timer = cb_exercise_timer.isSelected();
 
                         ModelExercise exercise = new ModelExercise(name,length,position,description,repeats,timer);
-                        training.addExercise(exercise, userID);
+                        training.addExercise(exercise);
                         break;
 
                 }

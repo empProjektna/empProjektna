@@ -27,7 +27,7 @@ public class AdapterExercise extends RecyclerView.Adapter<AdapterExercise.MyView
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_feed, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_exercise, parent, false);
         MyViewHolder viewHolder = new MyViewHolder(view);
 
         return viewHolder;
@@ -39,7 +39,7 @@ public class AdapterExercise extends RecyclerView.Adapter<AdapterExercise.MyView
         final ModelExercise modelExercise = modelExerciseArrayList.get(position);
 
         holder.exerciseName.setText(modelExercise.getName());
-
+        holder.number.setText(String.valueOf(position));
     }
 
     @Override
@@ -49,12 +49,13 @@ public class AdapterExercise extends RecyclerView.Adapter<AdapterExercise.MyView
 
 
     public class  MyViewHolder extends RecyclerView.ViewHolder{
-        TextView exerciseName;
+        TextView exerciseName, number;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            exerciseName = (TextView)itemView.findViewById(R.id.et_exercise_name);
+            exerciseName = (TextView)itemView.findViewById(R.id.tv_exercise_name);
+            number = (TextView)itemView.findViewById(R.id.tv_number);
 
         }
     }

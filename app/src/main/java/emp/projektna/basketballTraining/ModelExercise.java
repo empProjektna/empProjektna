@@ -58,6 +58,7 @@ public class ModelExercise {
     public boolean isTimer() {
         return timer;
     }
+
     boolean success = false;
 
     public boolean uploadToFirestore(String id) {

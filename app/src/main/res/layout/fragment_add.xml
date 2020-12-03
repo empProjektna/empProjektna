@@ -44,7 +44,7 @@
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/exercise_scroll_view"
+            android:id="@+id/exercises_recycler_view"
             >
         </androidx.recyclerview.widget.RecyclerView>
         <Button
