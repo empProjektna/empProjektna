@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:background="?attr/colorSecondary">
         <androidx.appcompat.widget.Toolbar
-            android:background="@color/black"
+            android:background="@color/dark_grey"
             android:elevation="4dp"
             app:titleTextColor="?attr/colorOnSecondary"
             app:title="Profile"
@@ -119,7 +119,9 @@
                  android:layout_width="match_parent"
                  android:clickable="true"
                  android:focusable="true"
-                 app:rippleColor="@color/design_default_color_primary_dark"
+                 android:id="@+id/trainigs_card_view"
+                 app:cardCornerRadius="10dp"
+                 app:rippleColor="@color/more_light_grey"
                  app:cardBackgroundColor="@color/light_grey"
                  android:layout_height="40dp">
 

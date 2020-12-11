@@ -71,7 +71,7 @@ public class ModelExercise {
             databaseInput.put("TIMER", timer);
 
             String uniqueID = String.valueOf(System.currentTimeMillis());
-            db.collection("Trainigs").document(firebaseAuth.getUid()).collection(uniqueID).document(id).set(databaseInput).addOnSuccessListener(new OnSuccessListener<Void>() {
+            db.collection("Trainings").document(firebaseAuth.getUid()).collection(id).document(uniqueID).set(databaseInput).addOnSuccessListener(new OnSuccessListener<Void>() {
                 @Override
                 public void onSuccess(Void aVoid) {
                     success = true;

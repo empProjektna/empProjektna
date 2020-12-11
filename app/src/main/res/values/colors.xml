@@ -8,8 +8,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="nice_purple">#5000ca</color>
-    <color name="light_grey">#222222</color>
+    <color name="light_grey">#202020</color>
     <color name="dark_grey">#121212</color>
     <color name="nice_brown">#389393</color>
+    <color name="more_light_grey">#474747</color>
+    <color name="transparent">#00FFFFFF</color>
+
+
 
 </resources>

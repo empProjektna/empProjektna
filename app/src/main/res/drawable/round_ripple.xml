@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/more_light_grey"> <!-- default ripple color -->
+
+    <item>
+        <!-- the background shape when it's not being clicked -->
+        <shape android:shape="rectangle">
+            <solid android:color="@color/dark_grey" />
+            <corners android:radius="10dp"/>
+            <stroke
+                android:width="1px"
+                android:color="@color/white" />
+        </shape>
+    </item>
+</ripple>
