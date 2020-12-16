@@ -13,6 +13,7 @@
     <color name="nice_brown">#389393</color>
     <color name="more_light_grey">#474747</color>
     <color name="transparent">#00FFFFFF</color>
+    <color name="disabled_text">#99FFFFFF</color>
 
 
 

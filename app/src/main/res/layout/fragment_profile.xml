@@ -10,7 +10,7 @@
             android:elevation="4dp"
             app:titleTextColor="?attr/colorOnSecondary"
             app:title="Profile"
-            android:id="@+id/profile_toolbar_edit"
+            android:id="@+id/profile_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:menu="@menu/profile_toolbar"/>
@@ -18,22 +18,20 @@
         <LinearLayout
             android:id="@+id/edit_profile_avatarName_row"
             android:padding="20dp"
-            android:layout_below="@id/profile_toolbar_edit"
+            android:layout_below="@id/profile_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:id="@+id/edit_profile_avatar"
-                    android:src="@mipmap/ic_launcher_round"
+                    android:id="@+id/profile_avatar"
                     />
                 <TextView
                     android:paddingLeft="15dp"
                     android:id="@+id/profile_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ime Priimek"
                     android:textColor="?attr/colorOnSecondary"
                     android:textSize="20sp"
                     />
@@ -63,8 +61,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/edit_profile_followers"
-                            android:text="0"
+                            android:id="@+id/profile_followers"
                             android:textColor="@color/white"
                             />
                         <TextView
@@ -72,7 +69,7 @@
                             android:layout_height="wrap_content"
                             android:text="Followers"
                             android:textColor="@color/white"
-                            android:textSize="11dp" />
+                            android:textSize="13sp" />
                 </LinearLayout>
                 <View
                     android:layout_gravity="center"
@@ -87,8 +84,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/edit_profile_following"
-                            android:text="0"
+                            android:id="@+id/profile_following"
                             android:textColor="@color/white"
                             />
                         <TextView
@@ -96,7 +92,7 @@
                             android:layout_height="wrap_content"
                             android:text="Following"
                             android:textColor="@color/white"
-                            android:textSize="11dp" />
+                            android:textSize="13sp" />
                 </LinearLayout>
         </LinearLayout>
         <View
@@ -126,12 +122,13 @@
                  android:layout_height="40dp">
 
                      <RelativeLayout
+                         android:padding="10dp"
                          android:layout_width="match_parent"
                          android:layout_height="match_parent"
                          android:orientation="horizontal">
 
                      <ImageView
-                         android:layout_alignParentLeft="true"
+                         android:layout_alignParentStart="true"
                          android:layout_centerInParent="true"
                          android:id="@+id/ic_basketball"
                          android:layout_width="20dp"
@@ -151,7 +148,6 @@
                              <ImageView
                                  android:layout_alignParentRight="true"
                                  android:layout_centerVertical="true"
-                                 android:paddingRight="10dp"
                                  android:id="@+id/ic_arrow"
                                  android:layout_width="20dp"
                                  android:layout_height="20dp"

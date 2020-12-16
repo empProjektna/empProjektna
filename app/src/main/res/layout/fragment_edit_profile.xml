@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="@color/dark_grey">
+    <androidx.appcompat.widget.Toolbar
+        android:background="@color/dark_grey"
+        app:titleTextColor="?attr/colorOnSecondary"
+        app:title="Profile"
+        android:id="@+id/edit_profile_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:menu="@menu/edit_profile_toolbar"/>
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/edit_profile_avatar"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_below="@id/edit_profile_toolbar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginVertical="15dp"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/edit_profile_avatar"
+        android:id="@+id/edit_profile_name"
+        android:text="Name"
+        android:layout_marginBottom="3dp"
+        android:textSize="16sp"
+        android:layout_marginHorizontal="30dp"
+        android:textColor="@color/disabled_text"/>
+
+    <EditText
+        android:drawableStart="@drawable/ic_person_outline"
+        android:id="@+id/profile_name"
+        android:drawablePadding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_profile_name"
+        android:layout_centerHorizontal="true"
+        android:layout_marginHorizontal="30dp"
+        android:background="@drawable/round_edit_text"
+        android:inputType="textPersonName|textEmailAddress"
+        android:maxLines="1"
+        android:padding="10dp"
+        android:textColor="?attr/colorOnSecondary"
+        android:textSize="20sp" />
+
+
+
+
+    <!-- Spol in rojstni dan -->
+    <LinearLayout
+        android:paddingVertical="10dp"
+        android:weightSum="2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/profile_name"
+        android:id="@+id/edit_profile_gender_birthday_row">
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/edit_profile_gender_tv"
+                    android:text="Gender"
+                    android:layout_marginBottom="3dp"
+                    android:textSize="16sp"
+                    android:layout_marginHorizontal="30dp"
+                    android:textColor="@color/disabled_text"/>
+
+                <LinearLayout
+                    android:layout_marginHorizontal="30dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/round_edit_text">
+                        <Spinner
+                            android:textSize="20sp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/edit_profile_spinner"/>
+                </LinearLayout>
+            </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/edit_profile_birthday_tv"
+                android:text="Birthdate"
+                android:layout_marginBottom="3dp"
+                android:textSize="16sp"
+                android:layout_marginHorizontal="30dp"
+                android:textColor="@color/disabled_text"/>
+
+            <TextView
+                android:id="@+id/edit_profile_date_picker"
+                android:drawablePadding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:background="@drawable/round_edit_text"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:textColor="?attr/colorOnSecondary"
+                android:textSize="20sp"
+                app:drawableStartCompat="@drawable/ic_outline_calendar" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+    <!-- Višina in teža -->
+    <LinearLayout
+        android:paddingVertical="10dp"
+        android:weightSum="2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/edit_profile_gender_birthday_row"
+        android:id="@+id/edit_profile_height_weight_row">
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/edit_profile_weight_tv"
+                android:text="Weight"
+                android:layout_marginBottom="3dp"
+                android:textSize="16sp"
+                android:layout_marginHorizontal="30dp"
+                android:textColor="@color/disabled_text"/>
+
+                <EditText
+                    android:drawableStart="@drawable/ic_scale"
+                    android:id="@+id/edit_profile_weight_et"
+                    android:drawablePadding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:padding="10dp"
+                    android:layout_marginHorizontal="30dp"
+                    android:background="@drawable/round_edit_text"
+                    android:textColor="?attr/colorOnSecondary"
+                    android:drawableEnd="@drawable/ic_kg"
+                    android:textSize="20sp">
+
+                    </EditText>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/edit_profile_height_tv"
+                android:text="Height"
+                android:layout_marginBottom="3dp"
+                android:textSize="16sp"
+                android:layout_marginHorizontal="30dp"
+                android:textColor="@color/disabled_text"/>
+
+            <EditText
+                android:drawableStart="@drawable/ic_height"
+                android:id="@+id/edit_profile_height_et"
+                android:drawablePadding="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="30dp"
+                android:background="@drawable/round_edit_text"
+                android:inputType="number"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:drawableEnd="@drawable/ic_cm"
+                android:textColor="?attr/colorOnSecondary"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+    </LinearLayout>
+</RelativeLayout>
