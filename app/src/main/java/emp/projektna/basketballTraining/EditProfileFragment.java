@@ -45,6 +45,7 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -156,10 +157,18 @@ public class EditProfileFragment extends Fragment {
         birthDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String [] datum = birthDate.getText().toString().split("/");
-                int day = Integer.parseInt(datum[0]);
-                int month = Integer.parseInt(datum[1]) - 1;
-                int year = Integer.parseInt(datum[2]);
+                int day, month, year;
+                if (!birthDate.getText().toString().equals("")) {
+                    String[] datum = birthDate.getText().toString().split("/");
+                    day = Integer.parseInt(datum[0]);
+                    month = Integer.parseInt(datum[1]) - 1;
+                    year = Integer.parseInt(datum[2]);
+                }
+                else {
+                    day = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+                    month =  Calendar.getInstance().get(Calendar.MONTH);
+                    year = Calendar.getInstance().get(Calendar.YEAR);;
+                }
 
                 datePickerDialog = new DatePickerDialog(getContext(), new DatePickerDialog.OnDateSetListener() {
                     @Override

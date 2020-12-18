@@ -3,6 +3,7 @@ package emp.projektna.basketballTraining;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -55,7 +56,8 @@ public class SignUpActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
                                         // Sign in success, update UI with the signed-in user's information
-                                        FirebaseUser user = mAuth.getCurrentUser();
+                                        Intent intent = new Intent(SignUpActivity.this, SecondMainActivity.class);
+                                        startActivity(intent);
 
                                     } else {
                                         // If sign in fails, display a message to the user.
@@ -70,17 +72,4 @@ public class SignUpActivity extends AppCompatActivity {
         });
 
     }
-    private  void updateUI(FirebaseUser firebaseUser) {
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
-        if(account != null) {
-            String name = account.getDisplayName();
-            String personGivenName = account.getGivenName();
-
-            Toast.makeText(SignUpActivity.this, "Welcome "+ name, Toast.LENGTH_LONG).show();
-        }
-
-    }
-
-
-
 }

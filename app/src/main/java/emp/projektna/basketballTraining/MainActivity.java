@@ -26,6 +26,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -183,6 +188,29 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this, "Welcome "+ name, Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(MainActivity.this, SecondMainActivity.class);
                 startActivity(intent);
+
+
+                // Check if first google login and set name in FireStore
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                db.collection("Users").document(FirebaseAuth.getInstance().getUid()).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot documentSnapshot = task.getResult();
+                            if (!documentSnapshot.exists()) {
+                                Map<String, Object> dbInput = new HashMap<>();
+                                dbInput.put("Name", name);
+                                dbInput.put("Url", account.getPhotoUrl().toString());
+                                dbInput.put("BirthDate", "");
+                                dbInput.put("Gender", "");
+                                dbInput.put("Height", "");
+                                dbInput.put("Weight", "");
+                                db.collection("Users").document(FirebaseAuth.getInstance().getUid()).set(dbInput);
+                            }
+                        }
+                    }
+                }
+                );
             }
             else{
                 Toast.makeText(MainActivity.this,"Login failed", Toast.LENGTH_LONG).show();
