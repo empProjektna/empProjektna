@@ -7,7 +7,6 @@
     android:background="?attr/colorSecondary">
         <androidx.appcompat.widget.Toolbar
             android:background="@color/dark_grey"
-            android:elevation="4dp"
             app:titleTextColor="?attr/colorOnSecondary"
             app:title="Profile"
             android:id="@+id/profile_toolbar"
@@ -28,7 +27,7 @@
                     android:id="@+id/profile_avatar"
                     />
                 <TextView
-                    android:paddingLeft="15dp"
+                    android:paddingStart="15dp"
                     android:id="@+id/profile_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -67,7 +66,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Followers"
+                            android:text="@string/followers"
                             android:textColor="@color/white"
                             android:textSize="13sp" />
                 </LinearLayout>
@@ -90,7 +89,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Following"
+                            android:text="@string/following"
                             android:textColor="@color/white"
                             android:textSize="13sp" />
                 </LinearLayout>
@@ -104,6 +103,7 @@
             android:layout_below="@id/edit_profile_followersFollowing"/>
 
         <LinearLayout
+            android:orientation="vertical"
             android:paddingTop="10dp"
             android:paddingHorizontal="5dp"
             android:layout_width="match_parent"
@@ -142,7 +142,7 @@
                                  android:layout_toEndOf="@id/ic_basketball"
                                  android:layout_centerVertical="true"
                                  android:paddingLeft="10dp"
-                                 android:text="Trainings"
+                                 android:text="@string/trainings"
                                  android:textColor="@color/white" />
 
                              <ImageView
@@ -157,6 +157,30 @@
 
 
              </com.google.android.material.card.MaterialCardView>
+
+             <com.google.android.material.card.MaterialCardView
+                 android:layout_marginTop="15dp"
+                 android:layout_height="40dp"
+                 android:layout_width="match_parent"
+                 android:clickable="true"
+                 android:focusable="true"
+                 android:id="@+id/sign_out_view"
+                 app:cardCornerRadius="10dp"
+                 app:rippleColor="@color/more_light_grey"
+                 app:cardBackgroundColor="@color/light_grey">
+                     <TextView
+
+                         android:layout_width="wrap_content"
+                         android:layout_height="match_parent"
+                             android:textColor="@color/white"
+                             android:text="@string/log_out"
+                         android:paddingLeft="10dp"
+                             android:gravity="center"
+                         />
+
+
+             </com.google.android.material.card.MaterialCardView>
+
 
         </LinearLayout>
 

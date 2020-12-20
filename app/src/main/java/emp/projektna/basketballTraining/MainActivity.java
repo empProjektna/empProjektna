@@ -1,10 +1,5 @@
 package emp.projektna.basketballTraining;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,6 +7,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -58,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
 
         if (FirebaseAuth.getInstance().getCurrentUser() != null) {
             Intent intent = new Intent(MainActivity.this, SecondMainActivity.class);
+            finish();
             startActivity(intent);
         }
 
@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(MainActivity.this,"Successful", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(MainActivity.this,"Successful", Toast.LENGTH_LONG).show();
                     FirebaseUser user = mAuth.getCurrentUser();
                     updateUI(user, true);
                 }
@@ -187,8 +187,6 @@ public class MainActivity extends AppCompatActivity {
 
                 Toast.makeText(MainActivity.this, "Welcome "+ name, Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(MainActivity.this, SecondMainActivity.class);
-                startActivity(intent);
-
 
                 // Check if first google login and set name in FireStore
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -211,6 +209,9 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 );
+
+                finish();
+                startActivity(intent);
             }
             else{
                 Toast.makeText(MainActivity.this,"Login failed", Toast.LENGTH_LONG).show();
@@ -219,6 +220,7 @@ public class MainActivity extends AppCompatActivity {
         else if(firebaseUser != null){
             Toast.makeText(MainActivity.this, "Welcome", Toast.LENGTH_LONG).show();
             Intent intent = new Intent(MainActivity.this, SecondMainActivity.class);
+            finish();
             startActivity(intent);
         }
         else{
