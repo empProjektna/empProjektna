@@ -1,7 +1,6 @@
 package emp.projektna.basketballTraining;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,14 +23,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.LongFunction;
 
 public class AddFragment extends Fragment {
 
@@ -64,7 +61,7 @@ public class AddFragment extends Fragment {
         addExercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment someFragment = new AddExercise();
+                Fragment someFragment = new AddExerciseFragment();
                 Bundle args = new Bundle();
                 args.putString("id", ID);
                 someFragment.setArguments(args);

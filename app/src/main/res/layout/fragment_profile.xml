@@ -12,7 +12,8 @@
             android:id="@+id/profile_toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:menu="@menu/profile_toolbar"/>
+            app:menu="@menu/profile_toolbar"
+            />
 
         <LinearLayout
             android:id="@+id/edit_profile_avatarName_row"
@@ -115,7 +116,7 @@
                  android:layout_width="match_parent"
                  android:clickable="true"
                  android:focusable="true"
-                 android:id="@+id/trainigs_card_view"
+                 android:id="@+id/trainings_card_view"
                  app:cardCornerRadius="10dp"
                  app:rippleColor="@color/more_light_grey"
                  app:cardBackgroundColor="@color/light_grey"

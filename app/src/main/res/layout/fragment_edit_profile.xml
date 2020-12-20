@@ -8,7 +8,7 @@
     <androidx.appcompat.widget.Toolbar
         android:background="@color/dark_grey"
         app:titleTextColor="?attr/colorOnSecondary"
-        app:title="Profile"
+        app:title="Edit profile"
         android:id="@+id/edit_profile_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

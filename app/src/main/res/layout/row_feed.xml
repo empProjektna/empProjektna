@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="wrap_content"
     android:layout_width="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,7 +9,7 @@
     android:focusable="true"
     app:rippleColor="@color/more_light_grey">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/dark_grey">
@@ -22,7 +23,6 @@
 
 
             <de.hdodenhof.circleimageview.CircleImageView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:id="@+id/row_profile_image"
                 android:layout_width="45dp"
                 android:layout_height="45dp"
@@ -32,11 +32,11 @@
                 />
 
             <LinearLayout
-                android:paddingLeft="5dp"
+                android:paddingStart="5dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:layout_toRightOf="@id/row_profile_image">
+                android:layout_toEndOf="@id/row_profile_image">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -47,7 +47,7 @@
                     android:paddingTop="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="11dp"
+                    android:textSize="11sp"
                     android:id="@+id/display_time"/>
             </LinearLayout>
 
@@ -72,7 +72,7 @@
                     android:layout_height="wrap_content"
                     android:text="Free throws"
                     android:textColor="@color/white"
-                    android:textSize="11dp" />
+                    android:textSize="11sp" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -97,7 +97,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Threes"
-                    android:textSize="11dp"
+                    android:textSize="11sp"
                     />
                 <TextView
                     android:layout_width="wrap_content"
@@ -123,7 +123,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Time"
-                    android:textSize="11dp"
+                    android:textSize="11sp"
                     />
                 <TextView
                     android:layout_width="wrap_content"
@@ -136,23 +136,30 @@
 
         </LinearLayout>
 
+        <com.google.android.material.card.MaterialCardView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:id="@+id/court2"
+            android:layout_below="@id/stats"
+            android:layout_alignParentStart="true"
+            app:cardBackgroundColor="@color/dark_grey"
+            app:rippleColor="@color/more_light_grey">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="235dp"
-            android:layout_below="@id/stats"
             android:id="@+id/court"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-
             android:layout_marginTop="9dp"
             android:src="@drawable/court2" />
+        </com.google.android.material.card.MaterialCardView>
 
 
         <RelativeLayout
             android:id="@+id/comments_likes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/court"
+            android:layout_below="@id/court2"
             android:orientation="horizontal"
             android:paddingHorizontal="20dp"
             android:paddingVertical="5dp">

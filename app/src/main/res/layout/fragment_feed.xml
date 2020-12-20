@@ -2,29 +2,21 @@
 
 <RelativeLayout android:layout_height="match_parent"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <LinearLayout
+    <androidx.appcompat.widget.Toolbar
         android:background="@color/dark_grey"
-        android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/top_of_row_feed"
-        android:orientation="horizontal"
+        app:title="Feed"
+        app:menu="@menu/feed_toolbar"
+        app:titleTextColor="@color/white"
+        app:titleTextAppearance="@style/Toolbar.TitleText"
         >
-        <TextView
-            android:layout_marginStart="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Feed"
-            android:textSize="35sp"
-            android:textColor="@color/white"
-            />
-
-
-
-    </LinearLayout>
+    </androidx.appcompat.widget.Toolbar>
 
 <androidx.recyclerview.widget.RecyclerView
     android:layout_below="@+id/top_of_row_feed"
