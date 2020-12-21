@@ -20,25 +20,29 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.card.MaterialCardView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import emp.projektna.basketballTraining.EditProfile.EditProfileActivity;
 
 public class ProfileFragment extends Fragment {
 
-    private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    private final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private boolean allowRefresh = false;
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    ImageView imageView;
-    TextView profileName, followers, following;
-    MaterialCardView signOutView, pastTrainigsView;
+    private ImageView imageView;
+    private TextView profileName, followers, following;
+    private MaterialCardView signOutView, pastTrainigsView;
 
-    String _imageUrl;
+    private String _imageUrl;
+    private int followersCount, followingCount;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Nullable
     @Override
@@ -46,14 +50,16 @@ public class ProfileFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
         Toolbar toolbar = view.findViewById(R.id.profile_toolbar);
 
-        imageView = (ImageView) view.findViewById(R.id.profile_avatar);
+        imageView = view.findViewById(R.id.profile_avatar);
 
-        profileName = (TextView) view.findViewById(R.id.profile_name);
-        followers = (TextView) view.findViewById(R.id.profile_followers);
-        following = (TextView) view.findViewById(R.id.profile_following);
+        profileName = view.findViewById(R.id.profile_name);
+        followers = view.findViewById(R.id.profile_followers);
+        following = view.findViewById(R.id.profile_following);
 
-        signOutView = (MaterialCardView) view.findViewById(R.id.sign_out_view);
-        pastTrainigsView = (MaterialCardView) view.findViewById(R.id.trainings_card_view);
+        signOutView = view.findViewById(R.id.sign_out_view);
+        pastTrainigsView = view.findViewById(R.id.trainings_card_view);
+
+        // Napolni ime in sliko
         db.collection("Users").document(firebaseAuth.getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
@@ -62,19 +68,43 @@ public class ProfileFragment extends Fragment {
                     Glide.with(getContext()).load(_imageUrl).into(imageView);
                     profileName.setText(documentSnapshot.getString("Name"));
 
-
-                    followers.setText(documentSnapshot.getString("Followers"));
-
-                    if(followers.getText().toString().equals(""))
-                        followers.setText("0");
-                    following.setText(documentSnapshot.getString("Following"));
-
-                    if(following.getText().toString().equals("")) {
-                        following.setText("0");
-                    }
                 }
             }
         });
+
+        // Napolni štefilo followers
+        db.collection("Follow").document(firebaseAuth.getUid()).collection("followers").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+
+                    if (task.getResult().isEmpty())
+                        followersCount = 0;
+                    else
+                        followersCount = task.getResult().size();
+
+                    followers.setText(String.valueOf(followersCount));
+                }
+            }
+        });
+
+        // Napolni štefilo following
+
+        db.collection("Follow").document(firebaseAuth.getUid()).collection("following").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    if (task.getResult().getDocuments().size() == 0)
+                        followingCount = 0;
+                    else
+                        followingCount = task.getResult().getDocuments().size();
+
+                    following.setText(String.valueOf(followingCount));
+                }
+            }
+        });
+
+
 
 
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
@@ -111,6 +141,8 @@ public class ProfileFragment extends Fragment {
         });
 
 
+
+
         return view;
     }
 
@@ -128,16 +160,6 @@ public class ProfileFragment extends Fragment {
                         Glide.with(getContext()).load(_imageUrl).into(imageView);
                         profileName.setText(documentSnapshot.getString("Name"));
 
-
-                        followers.setText(documentSnapshot.getString("Followers"));
-
-                        if(followers.getText().toString().equals(""))
-                            followers.setText("0");
-                        following.setText(documentSnapshot.getString("Following"));
-
-                        if(following.getText().toString().equals("")) {
-                            following.setText("0");
-                        }
                     }
                 }
             });

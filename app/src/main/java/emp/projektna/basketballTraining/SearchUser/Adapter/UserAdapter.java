@@ -15,9 +15,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.HashMap;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -54,7 +56,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
 
         Glide.with(mContext).load(user.getImageUrl()).into(holder.avatar);
 
-        //isFollowing(user.getId(), holder.btn_follow);
+        isFollowing(user.getId(), holder.btn_follow);
 
 
         if (user.getId().equals(firebaseUser.getUid()))
@@ -63,10 +65,24 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
 
 
 
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        holder.btn_follow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                CollectionReference reference = FirebaseFirestore.getInstance().collection("Follow");
+                if (holder.btn_follow.getText().toString().equals("follow")) {
+                    //Povezave
+                    reference.document(firebaseUser.getUid()).collection("following").document(user.getId()).set(new HashMap<>());
+                    FirebaseFirestore.getInstance().collection("Follow").document(user.getId()).collection("followers").document(firebaseUser.getUid()).set(new HashMap<>());
 
+                    holder.btn_follow.setText("following");
+                }
+                else {
+                    // Povezave
+                    reference.document(firebaseUser.getUid()).collection("following").document(user.getId()).delete();
+                    reference.document(user.getId()).collection("followers").document(firebaseUser.getUid()).delete();
+
+                    holder.btn_follow.setText("follow");
+                }
             }
         });
     }
@@ -84,7 +100,6 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             username = itemView.findViewById(R.id.username);
             avatar = itemView.findViewById(R.id.user_avatar);
             btn_follow = itemView.findViewById(R.id.btn_follow);
@@ -93,16 +108,17 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder>{
     }
 
     private void isFollowing (String userId, Button button) {
-        FirebaseFirestore.getInstance().collection("Follow").document(firebaseUser.getUid()).collection("following").document(userId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-
+        FirebaseFirestore.getInstance().collection("Follow").document(firebaseUser.getUid()).collection("following").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful() && task.getResult().exists()) {
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful() && task.getResult().getDocuments().toString().contains(userId))
                     button.setText("following");
-                }
                 else
                     button.setText("follow");
             }
         });
+
     }
+
+
 }

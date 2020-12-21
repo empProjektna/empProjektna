@@ -30,7 +30,6 @@
         android:background="@drawable/round_ripple"
         android:id="@+id/btn_follow"
         android:textColor="@color/white"
-        android:text="Follow"
         android:layout_alignParentEnd="true"
         android:visibility="gone"
         android:layout_centerVertical="true"/>
