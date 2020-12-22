@@ -1,4 +1,4 @@
-package emp.projektna.basketballTraining;
+package emp.projektna.basketballTraining.AddTraining;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -29,6 +29,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+
+import emp.projektna.basketballTraining.AdapterExercise;
+import emp.projektna.basketballTraining.ModelExercise;
+import emp.projektna.basketballTraining.R;
 
 public class AddFragment extends Fragment {
 

@@ -1,8 +1,10 @@
-package emp.projektna.basketballTraining;
+package emp.projektna.basketballTraining.AddTraining;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
+
+import emp.projektna.basketballTraining.ModelExercise;
 
 public class Training {
 

@@ -6,6 +6,8 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import emp.projektna.basketballTraining.AddTraining.TrainingsFragment;
+
 public class TrainigsActivity extends AppCompatActivity {
     Toolbar toolbar;
     @Override

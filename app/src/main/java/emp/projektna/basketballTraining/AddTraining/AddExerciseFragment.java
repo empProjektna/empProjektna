@@ -1,4 +1,4 @@
-package emp.projektna.basketballTraining;
+package emp.projektna.basketballTraining.AddTraining;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -17,10 +18,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import emp.projektna.basketballTraining.ModelExercise;
+import emp.projektna.basketballTraining.R;
 
 public class AddExerciseFragment extends Fragment {
 
@@ -85,6 +90,25 @@ public class AddExerciseFragment extends Fragment {
         /*
          * Buttons
          * */
+
+        Button btn_selectPosition = view.findViewById(R.id.add_position);
+
+        btn_selectPosition.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*
+                Fragment someFragment = new SelectPositionFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, someFragment); // give your fragment container id in first parameter
+                transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
+                transaction.commit();
+                 */
+
+
+                DialogFragment newFragment = SelectPositionFragment.newInstance();
+                newFragment.show(getFragmentManager(), "dialog");
+            }
+        });
 
         Training training = new Training();
 

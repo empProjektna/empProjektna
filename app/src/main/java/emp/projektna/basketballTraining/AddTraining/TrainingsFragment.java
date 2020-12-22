@@ -1,4 +1,4 @@
-package emp.projektna.basketballTraining;
+package emp.projektna.basketballTraining.AddTraining;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,6 +10,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+
+import emp.projektna.basketballTraining.AdapterFeed;
+import emp.projektna.basketballTraining.ModelFeed;
+import emp.projektna.basketballTraining.R;
 
 
 public class TrainingsFragment extends Fragment {

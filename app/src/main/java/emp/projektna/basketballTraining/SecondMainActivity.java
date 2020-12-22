@@ -1,14 +1,15 @@
 package emp.projektna.basketballTraining;
 
+import android.os.Bundle;
+import android.view.MenuItem;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import emp.projektna.basketballTraining.AddTraining.AddFragment;
 
 public class SecondMainActivity extends AppCompatActivity {
 
