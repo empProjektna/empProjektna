@@ -30,9 +30,9 @@
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:background="@drawable/edit_text_bottom_line"
             android:hint="@string/training_name"
+            android:textColorHint="@color/white"
             android:inputType="textShortMessage|textCapSentences"
             android:padding="15sp"
             android:singleLine="true"

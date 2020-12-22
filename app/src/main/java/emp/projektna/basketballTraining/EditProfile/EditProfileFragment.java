@@ -3,6 +3,7 @@ package emp.projektna.basketballTraining.EditProfile;
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -21,10 +22,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -132,7 +136,10 @@ public class EditProfileFragment extends Fragment {
         genderSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
+                TextView selectedText = (TextView) parent.getChildAt(0);
+                if (selectedText != null) {
+                    selectedText.setTextColor(Color.WHITE);
+                }
             }
 
             @Override
@@ -184,49 +191,45 @@ public class EditProfileFragment extends Fragment {
                     case R.id.edit_profile_toolbar_save:
                         // slika
                         if (imageUri != null) {
-                            final ProgressDialog progressDialog = new ProgressDialog(getContext());
-                            progressDialog.setTitle("Uploading...");
-                            progressDialog.show();
 
-                            StorageReference ref = storageReference.child("images/"+ UUID.randomUUID().toString());
+                            StorageReference ref = storageReference.child("images/"+ firebaseAuth.getUid());
                             ref.putFile(imageUri)
                                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                                         @Override
                                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                                            progressDialog.dismiss();
                                             ref.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                                 @Override
                                                 public void onSuccess(Uri uri) {
                                                     Map<String, Object> databaseInput = mapForUpload(profileName.getText().toString(), height.getText().toString(), weight.getText().toString(), birthDate.getText().toString(), genderSpinner.getSelectedItem().toString());
                                                     databaseInput.put("Url", uri.toString());
-
+                                                    _imageUrl = uri.toString();
                                                     db.collection("Users").document(firebaseAuth.getUid()).set(databaseInput);
                                                 }
 
 
                                             });
                                         }
-                                    })
-                                    .addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
-                                            progressDialog.dismiss();
-                                        }
-                                    })
-                                    .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                                        @Override
-                                        public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                                            double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot
-                                                    .getTotalByteCount());
-                                            progressDialog.setMessage("Uploaded "+(int)progress+"%");
-                                        }
-                                    });
+                                    }).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
+                                    getActivity().finish();
+                                }
+                            });
+                            imageUri = null;
                         }
                         else {
                             Map<String, Object> databaseInput = mapForUpload(profileName.getText().toString(), height.getText().toString(), weight.getText().toString(), birthDate.getText().toString(), genderSpinner.getSelectedItem().toString());
                             databaseInput.put("Url", _imageUrl);
-                            db.collection("Users").document(firebaseAuth.getUid()).set(databaseInput);
+                            db.collection("Users").document(firebaseAuth.getUid()).set(databaseInput).addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    getActivity().finish();
+                                }
+                            });
                         }
+
+
+
                 }
                 return true;
             }

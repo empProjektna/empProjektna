@@ -86,6 +86,7 @@
                     android:layout_height="match_parent"
                     android:background="@drawable/round_edit_text">
                         <Spinner
+                            android:theme="@style/spinnerTheme"
                             android:textSize="20sp"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"

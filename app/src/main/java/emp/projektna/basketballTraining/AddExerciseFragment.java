@@ -1,5 +1,6 @@
 package emp.projektna.basketballTraining;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -46,6 +47,7 @@ public class AddExerciseFragment extends Fragment {
             }
         });
 
+
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
@@ -90,7 +92,11 @@ public class AddExerciseFragment extends Fragment {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
-                //Toast.makeText(getActivity(), String.valueOf(position), Toast.LENGTH_LONG).show();
+                TextView selectedText = (TextView) parent.getChildAt(0);
+                if (selectedText != null) {
+                    selectedText.setTextColor(Color.WHITE);
+                }
+
                 if (position == 0) {
                     tw_exercise_name.setVisibility(View.INVISIBLE);
                     tw_exercise_length.setVisibility(View.INVISIBLE);
@@ -131,11 +137,13 @@ public class AddExerciseFragment extends Fragment {
             }
 
 
+
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
+
 
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override

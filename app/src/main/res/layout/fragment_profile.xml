@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:background="?attr/colorSecondary">
+    android:background="@color/dark_grey">
         <androidx.appcompat.widget.Toolbar
             android:background="@color/dark_grey"
             app:titleTextColor="?attr/colorOnSecondary"
