@@ -31,7 +31,6 @@ import java.util.Map;
 import java.util.Objects;
 
 import emp.projektna.basketballTraining.AdapterExercise;
-import emp.projektna.basketballTraining.ModelExercise;
 import emp.projektna.basketballTraining.R;
 
 public class AddFragment extends Fragment {
@@ -42,6 +41,7 @@ public class AddFragment extends Fragment {
     private RecyclerView recyclerView;
     private AdapterExercise adapterExercise;
     private ArrayList<ModelExercise> modelExerciseArrayList = new ArrayList<>();
+    boolean first = true;
     String ID;
 
     @Override
@@ -55,7 +55,6 @@ public class AddFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_add, container, false);
-        Training training = new Training();
 
         Button addExercise = (Button) view.findViewById(R.id.btn_exercise_add);
 
@@ -65,6 +64,13 @@ public class AddFragment extends Fragment {
         addExercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (first) {
+                    db.collection("Trainings").document(ID).set(new HashMap<String, Object>() {{
+                        put("Name", "");
+                    }});
+                    first = false;
+                }
+
                 Fragment someFragment = new AddExerciseFragment();
                 Bundle args = new Bundle();
                 args.putString("id", ID);
@@ -86,7 +92,7 @@ public class AddFragment extends Fragment {
                         else {
                             Map<String, Object> query = new HashMap<>();
                             query.put("TRAINING_NAME",trainingName.getText().toString());
-                            db.collection("Trainings").document(firebaseAuth.getUid()).collection(ID).document("Name").set(query).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            db.collection("Trainings").document(ID).update(query).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     Toast.makeText(getContext(), "Saved!", Toast.LENGTH_SHORT).show();
@@ -97,12 +103,10 @@ public class AddFragment extends Fragment {
                                     Toast.makeText(getContext(), "Failed!", Toast.LENGTH_SHORT).show();
                                 }
                             });
-
+                            db.collection("Users").document(firebaseAuth.getUid()).collection("Trainigs").add(new HashMap<String, Object>() {{put("ID", ID);}});
                         }
                         break;
                     case R.id.discard_training:
-
-
                             db.collection("Trainings").document(firebaseAuth.getUid()).collection(ID).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                                 @Override
                                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
@@ -138,24 +142,44 @@ public class AddFragment extends Fragment {
     }
 
     public void  populateRecyclerView(RecyclerView recyclerView, AdapterExercise adapterExercise, String id) {
-        db.collection("Trainings").document(firebaseAuth.getUid()).collection(id).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        db.collection("Trainings").document(id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                 if (task.isSuccessful()) {
+                    Object exerciseIds = task.getResult().get("exercises");
                     modelExerciseArrayList.clear();
-                    for (DocumentSnapshot document : Objects.requireNonNull(task.getResult())) {
-                        if (!document.contains("TRAINING_NAME")) {
-                            ModelExercise modelExercise = new ModelExercise(document.getString("NAME"), Objects.requireNonNull(document.getLong("LENGTH")).intValue(),
-                                    Objects.requireNonNull(document.getLong("POSITION")).intValue(), document.getString("DESCRIPTION"), Objects.requireNonNull(document.getLong("REPEATS")).intValue(), document.getBoolean("TIMER"));
-                            modelExerciseArrayList.add(modelExercise);
+                    if (exerciseIds != null) {
+                        for (String exerciseId : (ArrayList<String>) exerciseIds) {
+                            db.collection("Exercises").document(exerciseId).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                                @Override
+                                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                                    if (task.isSuccessful()) {
+                                        DocumentSnapshot document = task.getResult();
+
+                                        String name = document.getString("NAME");
+                                        Long length = (Long) document.get("LENGTH");
+                                        String description = document.getString("DESCRIPTION");
+                                        Long sets = (Long) document.get("SETS");
+                                        Boolean timer = document.getBoolean("TIMER");
+                                        Boolean isShooting = document.getBoolean("isShooting");
+                                        ArrayList<Integer> positions = (ArrayList<Integer>) document.get("POSITIONS");
+                                        ModelExercise modelExercise = new ModelExercise(name,length, description, sets,timer, isShooting, positions);
+
+                                        modelExerciseArrayList.add(modelExercise);
+                                        adapterExercise.notifyDataSetChanged();
+                                    }
+                                }
+                            });
                         }
                     }
-                    adapterExercise.notifyDataSetChanged();
                 }
             }
         });
 
+    }
 
-
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 }

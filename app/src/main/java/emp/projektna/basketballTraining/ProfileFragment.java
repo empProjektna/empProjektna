@@ -30,6 +30,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import emp.projektna.basketballTraining.EditProfile.EditProfileActivity;
+import emp.projektna.basketballTraining.Trainings.TrainigsActivity;
 
 public class ProfileFragment extends Fragment {
 
@@ -82,7 +83,6 @@ public class ProfileFragment extends Fragment {
                         followersCount = 0;
                     else
                         followersCount = task.getResult().size();
-
                     followers.setText(String.valueOf(followersCount));
                 }
             }

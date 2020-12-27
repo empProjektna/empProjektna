@@ -25,12 +25,21 @@
         android:id="@+id/add_training_layout"
         android:layout_marginHorizontal="15dp">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:text="Name"
+            android:layout_marginBottom="3dp"
+            />
+
         <EditText
             android:id="@+id/edit_training_name"
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/edit_text_bottom_line"
+            android:background="@drawable/round_edit_text"
             android:hint="@string/training_name"
             android:textColorHint="@color/white"
             android:inputType="textShortMessage|textCapSentences"
@@ -55,6 +64,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:padding="7dp"
+            android:textSize="16sp"
             android:textColor="@color/white"
             android:background="@drawable/round_ripple"
             android:id="@+id/btn_exercise_add"

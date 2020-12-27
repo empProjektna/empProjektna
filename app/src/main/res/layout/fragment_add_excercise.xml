@@ -19,7 +19,7 @@
 
 
     <LinearLayout
-        android:layout_marginHorizontal="15sp"
+        android:layout_marginHorizontal="15dp"
         android:layout_below="@+id/add_exercise_toolbar"
         android:id="@+id/clExercise0"
         android:layout_width="match_parent"
@@ -28,7 +28,7 @@
 
         <Spinner
             android:theme="@style/spinnerTheme"
-            android:layout_marginTop="10dp"
+            android:layout_marginVertical="10dp"
             android:id="@+id/exercise_type_sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -36,37 +36,49 @@
             android:layout_gravity="right"
             />
         <LinearLayout
-            android:padding="10dp"
+            android:id="@+id/name_row"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             >
             <TextView
                 android:id="@+id/tw_exercise_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/exercise_name_tw"
+                android:text="@string/exercise_name"
                 android:textColor="@color/white"
                 android:visibility="gone"
-                tools:visibility="visible" />
+                tools:visibility="visible"
+                android:layout_marginBottom="3dp"/>
+
             <EditText
-                android:layout_marginStart="10dp"
                 android:id="@+id/et_exercise_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@drawable/round_edit_text"
                 android:inputType="textPersonName"
+                android:padding="10dp"
                 android:textColor="@color/white"
-                android:background="@drawable/edit_text_bottom_line"
                 android:visibility="gone"
-                tools:visibility="visible"
-                android:textCursorDrawable="@null"/>
+                tools:visibility="visible" />
         </LinearLayout>
 
+
+    <LinearLayout
+        android:layout_marginTop="5dp"
+        android:paddingVertical="10dp"
+        android:weightSum="4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/edit_profile_gender_birthday_row">
+
         <LinearLayout
-            android:padding="10dp"
-            android:layout_width="match_parent"
+            android:paddingRight="20dp"
+            android:layout_width="0dp"
+            android:layout_weight="1.3"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/tw_exercise_length"
@@ -75,85 +87,29 @@
                 android:text="@string/exercise_length_tw"
                 android:textColor="@color/white"
                 android:visibility="gone"
-                tools:visibility="visible" />
+                tools:visibility="visible"
+                android:layout_marginBottom="3dp"/>
 
             <EditText
-                android:layout_marginStart="10dp"
+                android:layout_gravity="bottom"
                 android:id="@+id/et_exercise_length"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:textColor="@color/white"
-                android:background="@drawable/edit_text_bottom_line"
+                android:background="@drawable/round_edit_text"
                 android:visibility="gone"
                 tools:visibility="visible"
-                android:textCursorDrawable="@null"/>
-        </LinearLayout>
-
-
-
-        <LinearLayout
-            android:padding="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/tw_exercise_description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/exercise_description_tw"
-                android:visibility="gone"
-                android:textColor="@color/white"
-                tools:visibility="visible"/>
-
-
-            <EditText
-                android:layout_marginStart="10dp"
-                android:id="@+id/et_exercise_description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:textColor="@color/white"
-                android:background="@drawable/edit_text_bottom_line"
-                android:visibility="gone"
-                tools:visibility="visible" />
+                android:padding="10dp"
+                android:drawableEnd="@drawable/ic_min"/>
         </LinearLayout>
 
         <LinearLayout
-            android:padding="10dp"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1.2"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:id="@+id/position_layout"
-            >
-
-            <TextView
-                android:id="@+id/tw_exercise_position"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/exercise_position_tw"
-                android:textColor="@color/white"
-                android:visibility="gone"
-                tools:visibility="visible" />
-            <EditText
-                android:layout_marginStart="10dp"
-                android:id="@+id/et_exercise_position"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPersonName"
-                android:background="@drawable/edit_text_bottom_line"
-                android:textColor="@color/white"
-                android:visibility="gone"
-                tools:visibility="visible" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:padding="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
+            android:orientation="vertical"
+            android:paddingStart="20dp">
             <TextView
                 android:id="@+id/tw_exercise_repeats"
                 android:layout_width="wrap_content"
@@ -161,20 +117,73 @@
                 android:text="@string/exercise_repeats_tw"
                 android:textColor="@color/white"
                 android:visibility="gone"
-                tools:visibility="visible" />
+                tools:visibility="visible"
+                android:layout_marginBottom="3dp"/>
             <EditText
-                android:layout_marginStart="10dp"
+                android:layout_gravity="bottom"
                 android:id="@+id/et_exercise_repeats"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:textColor="@color/white"
-                android:background="@drawable/edit_text_bottom_line"
+                android:background="@drawable/round_edit_text"
                 android:visibility="gone"
-                tools:visibility="visible" />
+                android:padding="12dp"
+                tools:visibility="visible"
+                />
         </LinearLayout>
 
+        <Button
+
+            android:layout_marginStart="20dp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_gravity="bottom"
+            android:layout_height="wrap_content"
+            android:text="Positions"
+            android:textColor="@color/white"
+            android:background="@drawable/round_ripple_grey_border"
+            android:id="@+id/add_position"
+            android:visibility="invisible"
+            android:textSize="16sp"
+            />
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tw_exercise_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/exercise_description_tw"
+            android:visibility="gone"
+            android:textColor="@color/white"
+            tools:visibility="visible"
+            android:layout_marginBottom="3dp"/>
+
+
+        <EditText
+            android:id="@+id/et_exercise_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:textColor="@color/white"
+            android:background="@drawable/round_edit_text"
+            android:visibility="gone"
+            android:padding="10dp"
+            tools:visibility="visible" />
+    </LinearLayout>
+
+
         <CheckBox
+            android:padding="5dp"
+            android:layout_marginTop="5dp"
             android:id="@+id/cb_exercise_timer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -184,16 +193,7 @@
             app:buttonTint="@color/white"
             tools:visibility="visible" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Position"
-            android:textColor="@color/white"
-            android:background="@drawable/round_ripple"
-            android:id="@+id/add_position"
-            android:layout_marginTop="10dp"
-            android:layout_gravity="center"
-            />
+
 
 
     </LinearLayout>

@@ -10,14 +10,17 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+
         android:theme="@style/Theme.EmpProjektna">
-        <activity android:name=".SearchUser.SearchUserActivity"></activity>
-        <activity android:name=".EditProfile.EditProfileActivity" />
-        <activity android:name=".TrainigsActivity" />
+        <activity android:name=".SearchUser.SearchUserActivity" android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".EditProfile.EditProfileActivity" android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".Trainings.TrainigsActivity" android:windowSoftInputMode="adjustPan"/>
         <activity
+            android:windowSoftInputMode="adjustPan"
             android:name=".SecondMainActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:windowSoftInputMode="adjustPan"
             android:name=".SignUpActivity"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait">
@@ -26,6 +29,7 @@
                 android:value=".MainActivity" />
         </activity>
         <activity
+            android:windowSoftInputMode="adjustPan"
             android:name=".MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>

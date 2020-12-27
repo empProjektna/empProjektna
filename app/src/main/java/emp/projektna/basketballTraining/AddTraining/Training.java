@@ -4,8 +4,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
 
-import emp.projektna.basketballTraining.ModelExercise;
-
 public class Training {
 
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();

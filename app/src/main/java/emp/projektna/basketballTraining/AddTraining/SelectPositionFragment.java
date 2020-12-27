@@ -2,6 +2,7 @@ package emp.projektna.basketballTraining.AddTraining;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,7 +15,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.DialogFragment;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import emp.projektna.basketballTraining.R;
 
@@ -22,11 +22,16 @@ import emp.projektna.basketballTraining.R;
 public class SelectPositionFragment extends DialogFragment {
     private  Toolbar toolbar;
 
-    private List<Integer> shootPositions = new ArrayList<>();
+    private ArrayList<Integer> shootPositions = new ArrayList<>();
     private Button[] gumbeki = new Button[25];
 
     static SelectPositionFragment newInstance() {
         return new SelectPositionFragment();
+    }
+
+    public static SelectPositionFragment getInstance() {
+        SelectPositionFragment fragment = new SelectPositionFragment();
+        return fragment;
     }
 
     private void setOnClick(final Button btn, final int i){
@@ -45,9 +50,14 @@ public class SelectPositionFragment extends DialogFragment {
             }
         });
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        Bundle mArgs = getArguments();
+        if (mArgs.getIntegerArrayList("selected") != null)
+            shootPositions = mArgs.getIntegerArrayList("selected");
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_select_position, container, false);
 
@@ -56,6 +66,10 @@ public class SelectPositionFragment extends DialogFragment {
         for (int i = 0; i < gumbeki.length; i++) {
             gumbeki[i] = (Button) constraintLayout.getChildAt(i);
             setOnClick(gumbeki[i], i);
+
+            if (shootPositions.contains(new Integer(i))) {
+                gumbeki[i].setBackground(getActivity().getResources().getDrawable(R.drawable.round_pin_button_selected));
+            }
         }
 
         return view;
@@ -81,5 +95,21 @@ public class SelectPositionFragment extends DialogFragment {
         Point size = new Point();
         activity.getWindowManager().getDefaultDisplay().getSize(size);
         return size.y;
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        sendResult();
+    }
+
+    private void sendResult() {
+        if( getTargetFragment() == null ) {
+            return;
+        }
+        Intent intent = AddExerciseFragment.newIntent(shootPositions);
+        getTargetFragment().onActivityResult(getTargetRequestCode(), Activity.RESULT_OK, intent);
+        dismiss();
     }
 }

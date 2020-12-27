@@ -1,7 +1,10 @@
 package emp.projektna.basketballTraining.AddTraining;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,9 +14,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -24,7 +27,8 @@ import androidx.fragment.app.Fragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import emp.projektna.basketballTraining.ModelExercise;
+import java.util.ArrayList;
+
 import emp.projektna.basketballTraining.R;
 
 public class AddExerciseFragment extends Fragment {
@@ -32,6 +36,9 @@ public class AddExerciseFragment extends Fragment {
 
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    private static final int TARGET_FRAGMENT_REQUEST_CODE = 1;
+
+    private ArrayList<Integer> selected = new ArrayList<>();
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -57,14 +64,12 @@ public class AddExerciseFragment extends Fragment {
         spinner.setAdapter(adapter);
 
 
-        //Button saveButton = (Button) toolbar.findViewById(R.id.btn_exercise_add);
         /*
          *  Text views
          */
         TextView tw_exercise_name = (TextView) view.findViewById(R.id.tw_exercise_name);
         TextView tw_exercise_length = (TextView) view.findViewById(R.id.tw_exercise_length);
         TextView tw_exercise_description = (TextView) view.findViewById(R.id.tw_exercise_description);
-        TextView tw_exercise_position = (TextView) view.findViewById(R.id.tw_exercise_position);
         TextView tw_exercise_repeats = (TextView) view.findViewById(R.id.tw_exercise_repeats);
 
         /*
@@ -74,11 +79,9 @@ public class AddExerciseFragment extends Fragment {
         EditText et_exercise_name = (EditText) view.findViewById(R.id.et_exercise_name);
         EditText et_exercise_length = (EditText) view.findViewById(R.id.et_exercise_length);
         EditText et_exercise_description = (EditText) view.findViewById(R.id.et_exercise_description);
-        EditText et_exercise_position = (EditText) view.findViewById(R.id.et_exercise_position);
         EditText et_exercise_repeats = (EditText) view.findViewById(R.id.et_exercise_repeats);
 
 
-        LinearLayout linearLayout = (LinearLayout) view. findViewById(R.id.position_layout);
 
         /*
          * Check box
@@ -96,22 +99,18 @@ public class AddExerciseFragment extends Fragment {
         btn_selectPosition.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*
-                Fragment someFragment = new SelectPositionFragment();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, someFragment); // give your fragment container id in first parameter
-                transaction.addToBackStack(null);  // if written, this transaction will be added to backstack
-                transaction.commit();
-                 */
 
+                DialogFragment newFragment = SelectPositionFragment.getInstance();
+                newFragment.setTargetFragment(AddExerciseFragment.this, 1);
 
-                DialogFragment newFragment = SelectPositionFragment.newInstance();
+                Bundle args = new Bundle();
+                args.putIntegerArrayList("selected", selected);
+                newFragment.setArguments(args);
+
                 newFragment.show(getFragmentManager(), "dialog");
             }
+
         });
-
-        Training training = new Training();
-
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -125,16 +124,13 @@ public class AddExerciseFragment extends Fragment {
                     tw_exercise_name.setVisibility(View.INVISIBLE);
                     tw_exercise_length.setVisibility(View.INVISIBLE);
                     tw_exercise_description.setVisibility(View.INVISIBLE);
-                    tw_exercise_position.setVisibility(View.INVISIBLE);
                     tw_exercise_repeats.setVisibility(View.INVISIBLE);
                     et_exercise_name.setVisibility(View.INVISIBLE);
                     et_exercise_length.setVisibility(View.INVISIBLE);
                     et_exercise_description.setVisibility(View.INVISIBLE);
-                    et_exercise_position.setVisibility(View.INVISIBLE);
                     et_exercise_repeats.setVisibility(View.INVISIBLE);
                     cb_exercise_timer.setVisibility(View.INVISIBLE);
-                    //if(training.numberOfExercises() != 0)
-                      //  btn_finish_training.setVisibility(View.VISIBLE);
+                    btn_selectPosition.setVisibility(View.INVISIBLE);
                 } else {
                     tw_exercise_name.setVisibility(View.VISIBLE);
                     tw_exercise_length.setVisibility(View.VISIBLE);
@@ -148,14 +144,10 @@ public class AddExerciseFragment extends Fragment {
 
 
                     if(position == 1) {
-                        tw_exercise_position.setVisibility(View.VISIBLE);
-                        et_exercise_position.setVisibility(View.VISIBLE);
-                        linearLayout.setVisibility(View.VISIBLE);
+                        btn_selectPosition.setVisibility(View.VISIBLE);
                     }
                     else {
-                        //tw_exercise_position.setVisibility(View.GONE);
-                        //et_exercise_position.setVisibility(View.GONE);
-                        linearLayout.setVisibility(View.GONE);
+                        btn_selectPosition.setVisibility(View.GONE);
                     }
                 }
             }
@@ -172,33 +164,36 @@ public class AddExerciseFragment extends Fragment {
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.btn_exercise_save:
-                        String description = et_exercise_description.getText().toString();
-                        et_exercise_description.setText("",TextView.BufferType.EDITABLE);
+                if (item.getItemId() == R.id.btn_exercise_save) {
+                        if (et_exercise_name.getText().toString().equals(""))
+                            Toast.makeText(getContext(), "Exercise name is empty", Toast.LENGTH_SHORT).show();
+                        else {
+                            String description = et_exercise_description.getText().toString();
+                            et_exercise_description.setText("", TextView.BufferType.EDITABLE);
 
-                        String name = et_exercise_name.getText().toString();
-                        et_exercise_name.setText("",TextView.BufferType.EDITABLE);
+                            String name = et_exercise_name.getText().toString();
+                            et_exercise_name.setText("", TextView.BufferType.EDITABLE);
 
-                        int length = Integer.parseInt(et_exercise_length.getText().toString());
-                        et_exercise_length.setText("",TextView.BufferType.EDITABLE);
+                            long length = 0;
+                            if (!et_exercise_length.getText().toString().equals(""))
+                                length = Integer.parseInt(et_exercise_length.getText().toString());
 
-                        int position = Integer.parseInt(et_exercise_position.getText().toString());
-                        et_exercise_position.setText("",TextView.BufferType.EDITABLE);
+                            et_exercise_length.setText("", TextView.BufferType.EDITABLE);
 
-                        int repeats = Integer.parseInt(et_exercise_repeats.getText().toString());
-                        et_exercise_repeats.setText("",TextView.BufferType.EDITABLE);
+                            long repeats = 0;
+                            if (!et_exercise_repeats.getText().toString().equals(""))
+                                repeats = Integer.parseInt(et_exercise_repeats.getText().toString());
+                            et_exercise_repeats.setText("", TextView.BufferType.EDITABLE);
 
-                        boolean timer = cb_exercise_timer.isSelected();
+                            boolean timer = cb_exercise_timer.isSelected();
 
-                        ModelExercise exercise = new ModelExercise(name,length,position,description,repeats,timer);
-                        //training.addExercise(exercise);
+                           ModelExercise exercise = new ModelExercise(name, length, description, repeats, timer, btn_selectPosition.getVisibility() == 0, selected);
+                            exercise.uploadToFirestore(trainingId);
 
-                        exercise.uploadToFirestore(trainingId);
-                        assert getFragmentManager() != null;
-                        getFragmentManager().popBackStack();
-                        break;
+                            SystemClock.sleep(500);
+                            getFragmentManager().popBackStack();
 
+                        }
                 }
                 return true;
 
@@ -210,7 +205,21 @@ public class AddExerciseFragment extends Fragment {
         return view;
     }
 
-    
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
 
+        if( resultCode != Activity.RESULT_OK ) {
+            return;
+        }
+        if( requestCode == TARGET_FRAGMENT_REQUEST_CODE ) {
+            selected = data.getIntegerArrayListExtra("selected");
+        }
+    }
 
+    public static Intent newIntent(ArrayList<Integer> selected) {
+        Intent intent = new Intent();
+        intent.putExtra("selected", selected);
+        return intent;
+    }
 }

@@ -1,4 +1,4 @@
-package emp.projektna.basketballTraining;
+package emp.projektna.basketballTraining.Trainings;
 
 import android.os.Bundle;
 import android.view.View;
@@ -6,7 +6,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import emp.projektna.basketballTraining.AddTraining.TrainingsFragment;
+import emp.projektna.basketballTraining.R;
 
 public class TrainigsActivity extends AppCompatActivity {
     Toolbar toolbar;
