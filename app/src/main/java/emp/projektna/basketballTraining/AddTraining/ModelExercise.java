@@ -1,7 +1,5 @@
 package emp.projektna.basketballTraining.AddTraining;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -85,7 +83,7 @@ public class ModelExercise {
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                     if (task.isSuccessful()) {
                         ArrayList<String> array;
-                        if (task.getResult().contains("exercises")) {
+                        if (task.getResult().exists() && task.getResult().contains("exercises")) {
                             array = (ArrayList<String>) task.getResult().get("exercises");
                             array.add(uniqueID);
                             Map<String, Object> dbInput = new HashMap<String, Object>(){{put("exercises", array);}};
@@ -96,8 +94,10 @@ public class ModelExercise {
                             array.add(uniqueID);
                             Map<String, Object> dbInput = new HashMap<>();
                             dbInput.put("exercises", array);
-                            db.collection("Trainings").document(id).update(dbInput);
-                            Log.e("bal", task.getResult().getData().toString());
+                            if (task.getResult().exists())
+                                db.collection("Trainings").document(id).update(dbInput);
+                            else
+                                db.collection("Trainings").document(id).set(dbInput);
                         }
                     }
                 }

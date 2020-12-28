@@ -64,13 +64,14 @@ public class AddFragment extends Fragment {
         addExercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                /*
                 if (first) {
                     db.collection("Trainings").document(ID).set(new HashMap<String, Object>() {{
                         put("Name", "");
                     }});
                     first = false;
                 }
-
+                 */
                 Fragment someFragment = new AddExerciseFragment();
                 Bundle args = new Bundle();
                 args.putString("id", ID);
@@ -89,9 +90,12 @@ public class AddFragment extends Fragment {
                     case R.id.save_training:
                         if (trainingName.getText().length() == 0)
                             Toast.makeText(getContext(), "Enter training name!", Toast.LENGTH_SHORT).show();
+                        else if (modelExerciseArrayList.isEmpty())
+                            Toast.makeText(getContext(), "Enter at least one exercise", Toast.LENGTH_SHORT).show();
                         else {
                             Map<String, Object> query = new HashMap<>();
-                            query.put("TRAINING_NAME",trainingName.getText().toString());
+                            query.put("Name",trainingName.getText().toString());
+                            query.put("userID", firebaseAuth.getUid());
                             db.collection("Trainings").document(ID).update(query).addOnCompleteListener(new OnCompleteListener<Void>() {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
@@ -103,7 +107,7 @@ public class AddFragment extends Fragment {
                                     Toast.makeText(getContext(), "Failed!", Toast.LENGTH_SHORT).show();
                                 }
                             });
-                            db.collection("Users").document(firebaseAuth.getUid()).collection("Trainigs").add(new HashMap<String, Object>() {{put("ID", ID);}});
+                            //db.collection("Users").document(firebaseAuth.getUid()).collection("Trainigs").add(new HashMap<String, Object>() {{put("ID", ID);}});
                         }
                         break;
                     case R.id.discard_training:
