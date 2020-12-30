@@ -21,8 +21,8 @@
     <string name="exercise_repeats_tw">Sets: </string>
     <string name="exercise_timer_cb">Timer</string>
     <string name="app_title">Swish</string>
-    <string name="register_text">New User? Register Now</string>
-    <string name="sign_in_text">Sign in</string>
+    <string name="register_text">Don\'t have an account?</string>
+    <string name="sign_in_text">Login</string>
     <string name="training_name">Training name:</string>
     <string name="hint_training_title">Title your training</string>
     <string name="exercise_name">Exercise name</string>
@@ -35,6 +35,9 @@
         <item>Male</item>
         <item>Female</item>
     </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login_text">Already have a account?</string>
 
 </resources>
 

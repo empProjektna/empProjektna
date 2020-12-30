@@ -15,6 +15,10 @@
     <color name="transparent">#00FFFFFF</color>
     <color name="disabled_text">#99FFFFFF</color>
     <color name="red">#FF0000</color>
+    <color name="nice_black">#201a31</color>
+    <color name="text_grey">#565360</color>
+    <color name="text_background_selected">#302b42</color>
+    <color name="orange">#E53935</color>
 
 
 
