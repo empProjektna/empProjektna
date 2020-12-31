@@ -18,6 +18,12 @@ public class ModelExercise {
     private final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
     private String name;
+
+
+
+
+
+    private String type;
     private Long length;
     private String description;
     private Long sets;
@@ -34,8 +40,9 @@ public class ModelExercise {
     private ArrayList<Integer> positions;
 
 
-    public ModelExercise(String name, Long length, String description, Long sets, Boolean timer, Boolean isShooting, ArrayList<Integer> positions) {
+    public ModelExercise(String name, Long length, String description, Long sets, Boolean timer, Boolean isShooting, ArrayList<Integer> positions,  String type) {
         this.name = name;
+        this.type = type;
         this.length = length;
         this.description = description;
         this.sets = sets;
@@ -47,6 +54,10 @@ public class ModelExercise {
 
     public String getName() {
         return name;
+    }
+
+    public String getType() {
+        return type;
     }
 
     public long getLength() {
@@ -76,6 +87,7 @@ public class ModelExercise {
             databaseInput.put("TIMER", timer);
             databaseInput.put("POSITIONS", positions);
             databaseInput.put("SHOOTING", isShooting);
+            databaseInput.put("TYPE", type);
             String uniqueID = String.valueOf(System.currentTimeMillis());
             db.collection("Exercises").document(uniqueID).set(databaseInput);
             db.collection("Trainings").document(id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -83,7 +95,7 @@ public class ModelExercise {
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                     if (task.isSuccessful()) {
                         ArrayList<String> array;
-                        if (task.getResult().exists() && task.getResult().contains("exercises")) {
+                        if (task.getResult() != null && task.getResult().exists() && task.getResult().contains("exercises")) {
                             array = (ArrayList<String>) task.getResult().get("exercises");
                             array.add(uniqueID);
                             Map<String, Object> dbInput = new HashMap<String, Object>(){{put("exercises", array);}};

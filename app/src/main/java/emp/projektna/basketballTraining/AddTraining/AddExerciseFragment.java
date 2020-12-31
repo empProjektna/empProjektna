@@ -187,12 +187,11 @@ public class AddExerciseFragment extends Fragment {
 
                             boolean timer = cb_exercise_timer.isSelected();
 
-                           ModelExercise exercise = new ModelExercise(name, length, description, repeats, timer, btn_selectPosition.getVisibility() == 0, selected);
+                           ModelExercise exercise = new ModelExercise(name, length, description, repeats, timer, btn_selectPosition.getVisibility() == 0, selected,  spinner.getSelectedItem().toString());
                             exercise.uploadToFirestore(trainingId);
 
                             SystemClock.sleep(500);
                             getFragmentManager().popBackStack();
-
                         }
                 }
                 return true;

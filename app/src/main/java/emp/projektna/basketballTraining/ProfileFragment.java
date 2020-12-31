@@ -29,6 +29,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import emp.projektna.basketballTraining.CompletedTrainings.CompletedTrainingsActivity;
 import emp.projektna.basketballTraining.EditProfile.EditProfileActivity;
 import emp.projektna.basketballTraining.LogIn_SignUp.MainActivity;
 import emp.projektna.basketballTraining.Trainings.TrainigsActivity;
@@ -41,7 +42,7 @@ public class ProfileFragment extends Fragment {
 
     private ImageView imageView;
     private TextView profileName, followers, following;
-    private MaterialCardView signOutView, pastTrainigsView;
+    private MaterialCardView signOutView, pastTrainigsView, completedTrainigsView;
 
     private String _imageUrl;
     private int followersCount, followingCount;
@@ -60,6 +61,7 @@ public class ProfileFragment extends Fragment {
 
         signOutView = view.findViewById(R.id.sign_out_view);
         pastTrainigsView = view.findViewById(R.id.trainings_card_view);
+        completedTrainigsView = view.findViewById(R.id.completed_trainings_card_view);
 
         // Napolni ime in sliko
         db.collection("Users").document(firebaseAuth.getUid()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -141,8 +143,13 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-
-
+        completedTrainigsView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), CompletedTrainingsActivity.class);
+                startActivity(intent);
+            }
+        });
 
         return view;
     }

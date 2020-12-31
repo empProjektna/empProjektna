@@ -6,13 +6,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="20dp"
+    android:padding="10dp"
     app:cardCornerRadius="20dp"
     android:clickable="true"
     android:focusable="true"
     android:orientation="horizontal"
     android:background="@drawable/round_ripple"
     android:layout_marginTop="20dp"
+
     >
 
     <TextView
@@ -25,7 +26,8 @@
         android:textSize="20sp"/>
     
     <TextView
-        android:id="@+id/tv_exercise_name"
+        android:layout_centerVertical="true"
+        android:id="@+id/tv_training_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toEndOf="@+id/tv_number"
@@ -33,7 +35,7 @@
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold" />
-
+    <!--
     <TextView
         android:id="@+id/tv_exercise_type"
         android:layout_width="wrap_content"
@@ -42,24 +44,29 @@
         android:textColor="@color/white"
         android:textSize="20sp"
        />
+       -->
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/length"
-        android:layout_toStartOf="@+id/minutes_icon"
+        android:id="@+id/exercises"
+        android:layout_toStartOf="@+id/exercises_icon"
         android:textColor="@color/white"
         android:textSize="20sp"
+        android:layout_marginEnd="5dp"
         android:layout_centerVertical="true"
        />
 
     <ImageView
-        android:layout_centerVertical="true"
-        android:layout_marginStart="5dp"
-        android:id="@+id/minutes_icon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_min"
-        android:layout_alignParentEnd="true"/>
+        android:id="@+id/exercises_icon"
+        android:layout_width="50dp"
+        android:scaleType="fitXY"
+        android:layout_height="40dp"
+        android:layout_marginTop="0dp"
+        android:layout_marginBottom="0dp"
+        android:layout_alignParentEnd="true"
+
+        android:layout_marginEnd="20dp"
+        android:src="@drawable/ic_exercises" />
 
 </RelativeLayout>

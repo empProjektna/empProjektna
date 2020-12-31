@@ -30,7 +30,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
-import emp.projektna.basketballTraining.AdapterExercise;
 import emp.projektna.basketballTraining.R;
 
 public class AddFragment extends Fragment {
@@ -149,7 +148,7 @@ public class AddFragment extends Fragment {
         db.collection("Trainings").document(id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
+                if (task.isSuccessful() && task.getResult() != null) {
                     Object exerciseIds = task.getResult().get("exercises");
                     modelExerciseArrayList.clear();
                     if (exerciseIds != null) {
@@ -159,18 +158,20 @@ public class AddFragment extends Fragment {
                                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                                     if (task.isSuccessful()) {
                                         DocumentSnapshot document = task.getResult();
+                                        if (document != null) {
+                                            String name = document.getString("NAME");
+                                            Long length = (Long) document.get("LENGTH");
+                                            String description = document.getString("DESCRIPTION");
+                                            Long sets = (Long) document.get("SETS");
+                                            Boolean timer = document.getBoolean("TIMER");
+                                            Boolean isShooting = document.getBoolean("isShooting");
+                                            ArrayList<Integer> positions = (ArrayList<Integer>) document.get("POSITIONS");
+                                            String type = document.getString("TYPE");
+                                            ModelExercise modelExercise = new ModelExercise(name, length, description, sets, timer, isShooting, positions, type);
 
-                                        String name = document.getString("NAME");
-                                        Long length = (Long) document.get("LENGTH");
-                                        String description = document.getString("DESCRIPTION");
-                                        Long sets = (Long) document.get("SETS");
-                                        Boolean timer = document.getBoolean("TIMER");
-                                        Boolean isShooting = document.getBoolean("isShooting");
-                                        ArrayList<Integer> positions = (ArrayList<Integer>) document.get("POSITIONS");
-                                        ModelExercise modelExercise = new ModelExercise(name,length, description, sets,timer, isShooting, positions);
-
-                                        modelExerciseArrayList.add(modelExercise);
-                                        adapterExercise.notifyDataSetChanged();
+                                            modelExerciseArrayList.add(modelExercise);
+                                            adapterExercise.notifyDataSetChanged();
+                                        }
                                     }
                                 }
                             });

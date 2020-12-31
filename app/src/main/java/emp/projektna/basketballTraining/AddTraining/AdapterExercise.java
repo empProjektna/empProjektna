@@ -1,4 +1,4 @@
-package emp.projektna.basketballTraining;
+package emp.projektna.basketballTraining.AddTraining;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-import emp.projektna.basketballTraining.AddTraining.ModelExercise;
+import emp.projektna.basketballTraining.R;
 
 public class AdapterExercise extends RecyclerView.Adapter<AdapterExercise.MyViewHolder> {
 
@@ -40,7 +40,9 @@ public class AdapterExercise extends RecyclerView.Adapter<AdapterExercise.MyView
         final ModelExercise modelExercise = modelExerciseArrayList.get(position);
 
         holder.exerciseName.setText(modelExercise.getName());
-        holder.number.setText(String.valueOf(position));
+        holder.number.setText((position + 1) + ".");
+        holder.length.setText(String.valueOf(modelExercise.getLength()));
+        holder.type.setText(modelExercise.getType());
     }
 
     @Override
@@ -50,14 +52,14 @@ public class AdapterExercise extends RecyclerView.Adapter<AdapterExercise.MyView
 
 
     public class  MyViewHolder extends RecyclerView.ViewHolder{
-        TextView exerciseName, number;
+        TextView exerciseName, number, length, type;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
             exerciseName = (TextView)itemView.findViewById(R.id.tv_exercise_name);
             number = (TextView)itemView.findViewById(R.id.tv_number);
-
+            length = (TextView)itemView.findViewById(R.id.length);
+            type = (TextView)itemView.findViewById(R.id.tv_exercise_type);
         }
     }
 }

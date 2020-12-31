@@ -1,6 +1,8 @@
 package emp.projektna.basketballTraining;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -10,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import emp.projektna.basketballTraining.AddTraining.AddFragment;
+import emp.projektna.basketballTraining.EditProfile.EditProfileActivity;
 
 public class SecondMainActivity extends AppCompatActivity {
 
@@ -20,10 +23,14 @@ public class SecondMainActivity extends AppCompatActivity {
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
+        Intent intent;
+        Bundle  b = getIntent().getExtras();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new FeedFragment()).commit();
-
-
-
+        if (b != null && b.getBoolean("first")) {
+            Log.e("blabla", "bla");
+            intent = new Intent(SecondMainActivity.this, EditProfileActivity.class);
+            startActivity(intent);
+        }
     }
 
 

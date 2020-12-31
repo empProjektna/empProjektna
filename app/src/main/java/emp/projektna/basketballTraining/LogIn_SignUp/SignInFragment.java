@@ -210,10 +210,10 @@ public class SignInFragment extends Fragment {
             if(account != null)
             {
                 String name = account.getDisplayName();
-                String personGivenName = account.getGivenName();
 
                 Toast.makeText(getActivity(), "Welcome "+ name, Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getActivity(), SecondMainActivity.class);
+                Bundle bundle = new Bundle();
 
                 // Check if first google login and set name in FireStore
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -234,14 +234,19 @@ public class SignInFragment extends Fragment {
                                          dbInput.put("Height", "");
                                          dbInput.put("Weight", "");
                                          db.collection("Users").document(FirebaseAuth.getInstance().getUid()).set(dbInput);
+                                         bundle.putBoolean("first", true);
                                      }
+                                     else
+                                         bundle.putBoolean("first", false);
                                  }
+
+                                 intent.putExtras(bundle);
+                                 getActivity().finish();
+                                 startActivity(intent);
                              }
                          }
                 );
 
-                getActivity().finish();
-                startActivity(intent);
             }
             else{
                 Toast.makeText(getActivity(),"Login failed", Toast.LENGTH_LONG).show();
