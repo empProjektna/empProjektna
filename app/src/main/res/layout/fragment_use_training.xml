@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/dark_grey"
+    tools:context=".Trainings.TrainingsFragment">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/use_training_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/dark_grey"
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/use_training_toolbar"
+        app:titleTextColor="?attr/colorOnSecondary" >
+    </androidx.appcompat.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/linear_layout"
+
+        android:layout_below="@id/use_training_toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_weight="1"
+            android:layout_height="0dp"
+            android:orientation="vertical">
+            <TextView
+
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/edit_profile_birthday_tv"
+                android:text="Date and time"
+                android:layout_marginBottom="3dp"
+                android:textSize="14sp"
+                android:layout_marginHorizontal="30dp"
+                android:textColor="@color/disabled_text"/>
+
+            <TextView
+                android:id="@+id/use_training_date_picker"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="20dp"
+                android:background="@drawable/round_edit_text"
+                android:drawablePadding="10dp"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:textColor="?attr/colorOnSecondary"
+                android:textSize="16sp"
+                app:drawableStartCompat="@drawable/ic_outline_calendar" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:weightSum="1"
+            android:orientation="vertical">
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/edit_profile_gender_tv"
+                android:text="Who can see?"
+                android:layout_marginBottom="3dp"
+                android:textSize="14sp"
+                android:layout_marginHorizontal="30dp"
+                android:textColor="@color/disabled_text"/>
+
+            <LinearLayout
+                android:layout_marginHorizontal="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/round_edit_text">
+                <Spinner
+                    android:theme="@style/spinnerTheme"
+                    android:textSize="16sp"
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/use_training_spinner"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:paddingHorizontal="20dp"
+        android:layout_below="@+id/linear_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/use_training_recycler_view"/>
+
+</RelativeLayout>

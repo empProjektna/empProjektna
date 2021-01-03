@@ -1,17 +1,20 @@
 package emp.projektna.basketballTraining.Trainings;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
 import emp.projektna.basketballTraining.R;
+import emp.projektna.basketballTraining.Trainings.UseTraining.UseTrainingFragment;
 
 public class AdapterTrainings extends RecyclerView.Adapter<AdapterTrainings.MyViewHolder> {
 
@@ -43,7 +46,12 @@ public class AdapterTrainings extends RecyclerView.Adapter<AdapterTrainings.MyVi
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Toast.makeText(context, holder.trainingID, Toast.LENGTH_SHORT).show();
+                Fragment fragment = new UseTrainingFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("trainingID", holder.trainingID);
+                bundle.putString("trainingName", holder.tv_name.getText().toString());
+                fragment.setArguments(bundle);
+                ((TrainigsActivity) context).setFragment(fragment);
             }
         });
     }

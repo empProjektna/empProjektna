@@ -3,12 +3,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/dark_grey"
     tools:context=".Trainings.TrainingsFragment">
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/past_trainings_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/dark_grey"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Trainings"
+        app:titleTextColor="?attr/colorOnSecondary" >
+    </androidx.appcompat.widget.Toolbar>
     <androidx.recyclerview.widget.RecyclerView
+        android:layout_below="@id/past_trainings_toolbar"
         android:paddingHorizontal="20dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:id="@+id/recyclerView"
         android:background="@color/dark_grey">
     </androidx.recyclerview.widget.RecyclerView>

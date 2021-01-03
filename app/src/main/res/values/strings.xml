@@ -36,6 +36,11 @@
         <item>Male</item>
         <item>Female</item>
     </string-array>
+
+    <string-array name="privacy">
+        <item>Everyone</item>
+        <item>Only me</item>
+    </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="login_text">Already have a account?</string>
