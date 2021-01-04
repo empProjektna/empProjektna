@@ -30,13 +30,12 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-import emp.projektna.basketballTraining.AddTraining.AdapterExercise;
 import emp.projektna.basketballTraining.AddTraining.ModelExercise;
 import emp.projektna.basketballTraining.R;
 public class UseTrainingFragment extends Fragment {
     private RecyclerView recyclerView;
     private String trainingID, trainingName;
-    private AdapterExercise adapterExercise;
+    private AdapterUseExercise adapterUseExercise;
     private TextView dateTV;
     private ArrayList<ModelExercise> modelExerciseArrayList = new ArrayList<>();
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -100,11 +99,11 @@ public class UseTrainingFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
-        adapterExercise = new AdapterExercise(getActivity(), modelExerciseArrayList);
+        adapterUseExercise = new AdapterUseExercise(getActivity(), modelExerciseArrayList, this);
 
-        recyclerView.setAdapter(adapterExercise);
+        recyclerView.setAdapter(adapterUseExercise);
 
-        populateRecyclerView(recyclerView, adapterExercise, trainingID);
+        populateRecyclerView(recyclerView, adapterUseExercise, trainingID);
 
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
@@ -140,7 +139,7 @@ public class UseTrainingFragment extends Fragment {
         return view;
     }
 
-    public void  populateRecyclerView(RecyclerView recyclerView, AdapterExercise adapterExercise, String id) {
+    public void  populateRecyclerView(RecyclerView recyclerView, AdapterUseExercise adapterExercise, String id) {
         db.collection("Trainings").document(id).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DocumentSnapshot> task) {
