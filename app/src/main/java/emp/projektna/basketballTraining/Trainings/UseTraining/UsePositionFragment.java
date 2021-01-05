@@ -24,7 +24,6 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import emp.projektna.basketballTraining.AddTraining.AddExerciseFragment;
 import emp.projektna.basketballTraining.R;
 
 
@@ -32,10 +31,11 @@ public class UsePositionFragment extends DialogFragment {
     private  Toolbar toolbar;
 
     private ArrayList<Integer> shootPositions = new ArrayList<>();
-    private Map<Integer, String> inputedShots = new HashMap<>();
-    private Map<Integer, String> inputedScored = new HashMap<>();
+    private Map<String, String> inputedShots = new HashMap<>();
+    private Map<String, String> inputedScored = new HashMap<>();
     private Button[] gumbeki = new Button[25];
     private Integer currentSelected = -1;
+    private int position = 0;
     //private Button btnNext;
     private TextView shots, scored;
     static UsePositionFragment newInstance() {
@@ -57,8 +57,8 @@ public class UsePositionFragment extends DialogFragment {
                         gumbeki[currentSelected].setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.round_pin_button_selected));
                     else
                         gumbeki[currentSelected].setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.round_pin_button_inputed));
-                    inputedShots.put(currentSelected, shots.getText().toString());
-                    inputedScored.put(currentSelected, scored.getText().toString());
+                    inputedShots.put(String.valueOf(currentSelected), shots.getText().toString());
+                    inputedScored.put(String.valueOf(currentSelected), scored.getText().toString());
                     if (inputedScored.containsKey(i) && inputedShots.containsKey(i)) {
                         shots.setText(inputedShots.get(i));
                         scored.setText(inputedScored.get(i));
@@ -67,6 +67,7 @@ public class UsePositionFragment extends DialogFragment {
                         shots.setText("");
                         scored.setText("");
                     }
+                    shots.requestFocus();
                 }
                 currentSelected = i;
             }
@@ -81,6 +82,7 @@ public class UsePositionFragment extends DialogFragment {
         if (mArgs != null && mArgs.getIntegerArrayList("selected") != null) {
             shootPositions = mArgs.getIntegerArrayList("selected");
             Collections.sort(shootPositions);
+            position = mArgs.getInt("position");
         }
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_use_position, container, false);
@@ -155,6 +157,8 @@ public class UsePositionFragment extends DialogFragment {
     @Override
     public void onStop() {
 
+        inputedShots.put(String.valueOf(currentSelected), shots.getText().toString());
+        inputedScored.put(String.valueOf(currentSelected), scored.getText().toString());
         PowerManager pm = (PowerManager) getActivity().getSystemService(Context.POWER_SERVICE);
         if (pm.isScreenOn()) {
             sendResult();
@@ -168,7 +172,7 @@ public class UsePositionFragment extends DialogFragment {
         if( getTargetFragment() == null ) {
             return;
         }
-        Intent intent = AddExerciseFragment.newIntent(shootPositions);
+        Intent intent = UseTrainingFragment.newIntent(inputedShots, inputedScored, position);
         getTargetFragment().onActivityResult(getTargetRequestCode(), Activity.RESULT_OK, intent);
         dismiss();
     }

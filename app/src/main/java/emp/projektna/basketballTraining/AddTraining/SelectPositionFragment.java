@@ -2,9 +2,11 @@ package emp.projektna.basketballTraining.AddTraining;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -99,9 +101,11 @@ public class SelectPositionFragment extends DialogFragment {
 
     @Override
     public void onStop() {
+        PowerManager pm = (PowerManager) getActivity().getSystemService(Context.POWER_SERVICE);
+        if (pm.isScreenOn()) {
+            sendResult();
+        }
         super.onStop();
-
-        sendResult();
     }
 
     private void sendResult() {

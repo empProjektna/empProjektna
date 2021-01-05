@@ -61,6 +61,7 @@ public class AdapterUseExercise extends RecyclerView.Adapter<AdapterUseExercise.
 
                     Bundle args = new Bundle();
                     args.putIntegerArrayList("selected", holder.positions);
+                    args.putInt("index", position);
                     newFragment.setArguments(args);
                     newFragment.show(fragment.getFragmentManager(), "dialog");
 

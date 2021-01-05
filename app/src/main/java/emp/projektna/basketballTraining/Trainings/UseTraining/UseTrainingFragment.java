@@ -1,7 +1,9 @@
 package emp.projektna.basketballTraining.Trainings.UseTraining;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,8 +16,10 @@ import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -27,8 +31,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 import emp.projektna.basketballTraining.AddTraining.ModelExercise;
 import emp.projektna.basketballTraining.R;
@@ -41,7 +48,10 @@ public class UseTrainingFragment extends Fragment {
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     private Spinner privacySpinner;
+    Map<String, Map<String, String>> inputedDataShots = new HashMap<>();
+    Map<String, Map<String, String>> inputedDataScored = new HashMap<>();
     String dateText = "";
+    private static final int TARGET_FRAGMENT_REQUEST_CODE = 1;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -108,8 +118,17 @@ public class UseTrainingFragment extends Fragment {
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                if (item.getItemId() == R.id.btn_exercise_save) {
-                    //db.collection("Posts").document()
+                if (item.getItemId() == R.id.btn_use_training_save) {
+                    if (dateTV.getText().equals(""))
+                        Toast.makeText(getContext(), "Select date!", Toast.LENGTH_SHORT).show();
+                    else {
+                        Map<String, Object> dbInput = new HashMap<>();
+                        dbInput.put("date", dateTV.getText().toString());
+                        dbInput.put("userID", firebaseAuth.getUid());
+                        dbInput.put("shots", inputedDataShots);
+                        dbInput.put("scored", inputedDataScored);
+                        db.collection("CompletedTrainings").document().set(dbInput);
+                    }
                 }
 
                 return false;
@@ -176,5 +195,25 @@ public class UseTrainingFragment extends Fragment {
             }
         });
 
+    }
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode != Activity.RESULT_OK ) {
+            return;
+        }
+        if(requestCode == TARGET_FRAGMENT_REQUEST_CODE ) {
+            inputedDataShots.put(String.valueOf(data.getIntExtra("position", 0)), (HashMap<String, String>) data.getSerializableExtra("shots"));
+            inputedDataScored.put(String.valueOf(data.getIntExtra("position", 0)), (HashMap<String, String>) data.getSerializableExtra("scored"));
+        }
+    }
+
+    public static Intent newIntent(Map<String, String> shots, Map<String, String> scored, int position) {
+        Intent intent = new Intent();
+        intent.putExtra("shots", (Serializable) shots);
+        intent.putExtra("scored", (Serializable) scored);
+        intent.putExtra("position", position);
+        return intent;
     }
 }
