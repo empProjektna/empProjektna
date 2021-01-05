@@ -20,6 +20,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,7 +35,8 @@ public class UsePositionFragment extends DialogFragment {
     private Map<Integer, String> inputedShots = new HashMap<>();
     private Map<Integer, String> inputedScored = new HashMap<>();
     private Button[] gumbeki = new Button[25];
-    private int currentSelected = -1;
+    private Integer currentSelected = -1;
+    //private Button btnNext;
     private TextView shots, scored;
     static UsePositionFragment newInstance() {
         return new UsePositionFragment();
@@ -49,18 +51,24 @@ public class UsePositionFragment extends DialogFragment {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                gumbeki[i].setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.round_pin_button_inputed));
                 if (currentSelected != -1) {
+                    if (shots.getText().toString().equals("") || scored.getText().toString().equals(""))
+                        gumbeki[currentSelected].setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.round_pin_button_selected));
+                    else
+                        gumbeki[currentSelected].setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.round_pin_button_inputed));
                     inputedShots.put(currentSelected, shots.getText().toString());
                     inputedScored.put(currentSelected, scored.getText().toString());
                     if (inputedScored.containsKey(i) && inputedShots.containsKey(i)) {
                         shots.setText(inputedShots.get(i));
                         scored.setText(inputedScored.get(i));
                     }
+                    else {
+                        shots.setText("");
+                        scored.setText("");
+                    }
                 }
                 currentSelected = i;
-                if (inputedShots.containsKey(i) && inputedScored.containsKey(i)) {
-                    gumbeki[i].setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.round_pin_button_inputed));
-                }
             }
         });
     }
@@ -70,14 +78,17 @@ public class UsePositionFragment extends DialogFragment {
                              Bundle savedInstanceState) {
 
         Bundle mArgs = getArguments();
-        if (mArgs != null && mArgs.getIntegerArrayList("selected") != null)
+        if (mArgs != null && mArgs.getIntegerArrayList("selected") != null) {
             shootPositions = mArgs.getIntegerArrayList("selected");
+            Collections.sort(shootPositions);
+        }
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_use_position, container, false);
 
         ConstraintLayout constraintLayout = view.findViewById(R.id.gumbeki);
         shots = view.findViewById(R.id.shots);
         scored = view.findViewById(R.id.scored);
+        //btnNext = view.findViewById(R.id.btn_next);
         for (int i = 0; i < gumbeki.length; i++) {
             gumbeki[i] = (Button) constraintLayout.getChildAt(i);
             setOnClick(gumbeki[i], i);
@@ -90,6 +101,31 @@ public class UsePositionFragment extends DialogFragment {
             gumbeki[x].setVisibility(View.VISIBLE);
             gumbeki[x].setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.round_pin_button_selected));
         }
+        /*
+        btnNext.setOnClickListener(new ViewGroup.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                inputedShots.put(currentSelected, shots.getText().toString());
+                inputedScored.put(currentSelected, scored.getText().toString());
+
+                int bla =  Integer.parseInt(String.valueOf(shootPositions.get(shootPositions.size() - 1)));
+                Log.e("bla", String.valueOf(bla));
+                if (currentSelected == bla || currentSelected == -1)
+                    currentSelected = 0;
+                else
+                    currentSelected++;
+                gumbeki[currentSelected].setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.round_pin_button_selected));
+                if (inputedScored.containsKey(currentSelected) && inputedShots.containsKey(currentSelected)) {
+                    shots.setText(inputedShots.get(currentSelected));
+                    scored.setText(inputedScored.get(currentSelected));
+                }
+                else {
+                    shots.setText("");
+                    scored.setText("");
+                }
+            }
+        });
+         */
 
         return view;
     }
@@ -100,7 +136,7 @@ public class UsePositionFragment extends DialogFragment {
         Dialog dialog = getDialog();
         if (dialog != null) {
             dialog.getWindow()
-                    .setLayout((int) (getScreenWidth(getActivity()) * .93), (int) (getScreenHeight(getActivity()) * .57));
+                    .setLayout((int) (getScreenWidth(getActivity()) * .93), (int) (getScreenHeight(getActivity()) * .75));
         }
     }
 

@@ -331,7 +331,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1.5">
@@ -339,10 +339,10 @@
             android:paddingVertical="10dp"
             android:weightSum="2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_below="@+id/edit_profile_gender_birthday_row"
-            android:id="@+id/edit_profile_height_weight_row">
+            android:id="@+id/edit_profile_height_weight_row"
+            android:baselineAligned="false">
 
             <LinearLayout
                 android:layout_weight="1"
@@ -403,10 +403,20 @@
                     android:textColor="?attr/colorOnSecondary"
                     android:textSize="16sp" />
             </LinearLayout>
+
+
         </LinearLayout>
-
-
-
+        <!--
+        <Button
+            android:id="@+id/btn_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/round_ripple"
+            android:textColor="@color/white"
+            android:text="NEXT"/>
+            -->
     </LinearLayout>
 
 </LinearLayout>
