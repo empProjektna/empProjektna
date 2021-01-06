@@ -6,6 +6,7 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -127,7 +128,18 @@ public class UseTrainingFragment extends Fragment {
                         dbInput.put("userID", firebaseAuth.getUid());
                         dbInput.put("shots", inputedDataShots);
                         dbInput.put("scored", inputedDataScored);
-                        db.collection("CompletedTrainings").document().set(dbInput);
+                        dbInput.put("public", privacySpinner.getSelectedItem().toString().equals("Everyone"));
+                        db.collection("CompletedTrainings").document().set(dbInput).addOnCompleteListener(new OnCompleteListener() {
+                            @Override
+                            public void onComplete(@NonNull Task task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(getContext(), "Saved", Toast.LENGTH_SHORT).show();
+                                    getFragmentManager().popBackStack();
+                                }
+                                else
+                                    Toast.makeText(getContext(), "Error saving!", Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     }
                 }
 
@@ -214,6 +226,7 @@ public class UseTrainingFragment extends Fragment {
         intent.putExtra("shots", (Serializable) shots);
         intent.putExtra("scored", (Serializable) scored);
         intent.putExtra("position", position);
+        Log.e("bla", String.valueOf(position));
         return intent;
     }
 }

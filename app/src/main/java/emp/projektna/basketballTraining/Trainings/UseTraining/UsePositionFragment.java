@@ -82,7 +82,8 @@ public class UsePositionFragment extends DialogFragment {
         if (mArgs != null && mArgs.getIntegerArrayList("selected") != null) {
             shootPositions = mArgs.getIntegerArrayList("selected");
             Collections.sort(shootPositions);
-            position = mArgs.getInt("position");
+            Log.e("pos", String.valueOf(position));
+            position = mArgs.getInt("index");
         }
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_use_position, container, false);
@@ -103,32 +104,6 @@ public class UsePositionFragment extends DialogFragment {
             gumbeki[x].setVisibility(View.VISIBLE);
             gumbeki[x].setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.round_pin_button_selected));
         }
-        /*
-        btnNext.setOnClickListener(new ViewGroup.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                inputedShots.put(currentSelected, shots.getText().toString());
-                inputedScored.put(currentSelected, scored.getText().toString());
-
-                int bla =  Integer.parseInt(String.valueOf(shootPositions.get(shootPositions.size() - 1)));
-                Log.e("bla", String.valueOf(bla));
-                if (currentSelected == bla || currentSelected == -1)
-                    currentSelected = 0;
-                else
-                    currentSelected++;
-                gumbeki[currentSelected].setBackground(ContextCompat.getDrawable(getActivity(), R.drawable.round_pin_button_selected));
-                if (inputedScored.containsKey(currentSelected) && inputedShots.containsKey(currentSelected)) {
-                    shots.setText(inputedShots.get(currentSelected));
-                    scored.setText(inputedScored.get(currentSelected));
-                }
-                else {
-                    shots.setText("");
-                    scored.setText("");
-                }
-            }
-        });
-         */
-
         return view;
     }
 
