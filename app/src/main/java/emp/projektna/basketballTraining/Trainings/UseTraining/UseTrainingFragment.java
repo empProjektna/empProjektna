@@ -129,6 +129,7 @@ public class UseTrainingFragment extends Fragment {
                         dbInput.put("shots", inputedDataShots);
                         dbInput.put("scored", inputedDataScored);
                         dbInput.put("public", privacySpinner.getSelectedItem().toString().equals("Everyone"));
+                        dbInput.put("trainingID", trainingID);
                         db.collection("CompletedTrainings").document().set(dbInput).addOnCompleteListener(new OnCompleteListener() {
                             @Override
                             public void onComplete(@NonNull Task task) {
