@@ -191,7 +191,7 @@
             android:textColor="@color/white"
             android:visibility="gone"
             app:buttonTint="@color/white"
-            tools:visibility="visible" />
+            tools:visibility="invisible" />
 
 
 

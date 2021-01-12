@@ -27,7 +27,7 @@ public class ModelExercise {
     private Long length;
     private String description;
     private Long sets;
-    private Boolean timer, isShooting;
+    private Boolean isShooting;
 
     public ArrayList<Integer> getPositions() {
         return positions;
@@ -40,13 +40,12 @@ public class ModelExercise {
     private ArrayList<Integer> positions;
 
 
-    public ModelExercise(String name, Long length, String description, Long sets, Boolean timer, Boolean isShooting, ArrayList<Integer> positions,  String type) {
+    public ModelExercise(String name, Long length, String description, Long sets, Boolean isShooting, ArrayList<Integer> positions,  String type) {
         this.name = name;
         this.type = type;
         this.length = length;
         this.description = description;
         this.sets = sets;
-        this.timer = timer;
         this.isShooting = isShooting;
         this.positions = positions;
     }
@@ -72,10 +71,6 @@ public class ModelExercise {
         return sets;
     }
 
-    public boolean isTimer() {
-        return timer;
-    }
-
     boolean success = false;
 
     public void uploadToFirestore(String id) {
@@ -84,7 +79,6 @@ public class ModelExercise {
             databaseInput.put("LENGTH", length);
             databaseInput.put("DESCRIPTION", description);
             databaseInput.put("SETS", sets);
-            databaseInput.put("TIMER", timer);
             databaseInput.put("POSITIONS", positions);
             databaseInput.put("SHOOTING", isShooting);
             databaseInput.put("TYPE", type);

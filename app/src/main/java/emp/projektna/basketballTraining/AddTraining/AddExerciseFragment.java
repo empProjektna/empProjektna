@@ -87,7 +87,7 @@ public class AddExerciseFragment extends Fragment {
          * Check box
          * */
 
-        CheckBox cb_exercise_timer = (CheckBox) view.findViewById(R.id.cb_exercise_timer);
+        //CheckBox cb_exercise_timer = (CheckBox) view.findViewById(R.id.cb_exercise_timer);
 
 
         /*
@@ -129,7 +129,7 @@ public class AddExerciseFragment extends Fragment {
                     et_exercise_length.setVisibility(View.INVISIBLE);
                     et_exercise_description.setVisibility(View.INVISIBLE);
                     et_exercise_repeats.setVisibility(View.INVISIBLE);
-                    cb_exercise_timer.setVisibility(View.INVISIBLE);
+                    //cb_exercise_timer.setVisibility(View.INVISIBLE);
                     btn_selectPosition.setVisibility(View.INVISIBLE);
                 } else {
                     tw_exercise_name.setVisibility(View.VISIBLE);
@@ -140,7 +140,7 @@ public class AddExerciseFragment extends Fragment {
                     et_exercise_length.setVisibility(View.VISIBLE);
                     et_exercise_description.setVisibility(View.VISIBLE);
                     et_exercise_repeats.setVisibility(View.VISIBLE);
-                    cb_exercise_timer.setVisibility(View.VISIBLE);
+                    //cb_exercise_timer.setVisibility(View.VISIBLE);
 
 
                     if(position == 1) {
@@ -185,9 +185,9 @@ public class AddExerciseFragment extends Fragment {
                                 repeats = Integer.parseInt(et_exercise_repeats.getText().toString());
                             et_exercise_repeats.setText("", TextView.BufferType.EDITABLE);
 
-                            boolean timer = cb_exercise_timer.isSelected();
+                            //boolean timer = cb_exercise_timer.isSelected();
 
-                           ModelExercise exercise = new ModelExercise(name, length, description, repeats, timer, btn_selectPosition.getVisibility() == 0, selected,  spinner.getSelectedItem().toString());
+                            ModelExercise exercise = new ModelExercise(name, length, description, repeats, btn_selectPosition.getVisibility() == View.VISIBLE, selected,  spinner.getSelectedItem().toString());
                             exercise.uploadToFirestore(trainingId);
 
                             SystemClock.sleep(500);

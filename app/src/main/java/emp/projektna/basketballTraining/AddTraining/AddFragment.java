@@ -163,11 +163,11 @@ public class AddFragment extends Fragment {
                                             Long length = (Long) document.get("LENGTH");
                                             String description = document.getString("DESCRIPTION");
                                             Long sets = (Long) document.get("SETS");
-                                            Boolean timer = document.getBoolean("TIMER");
+                                            //Boolean timer = document.getBoolean("TIMER");
                                             Boolean isShooting = document.getBoolean("isShooting");
                                             ArrayList<Integer> positions = (ArrayList<Integer>) document.get("POSITIONS");
                                             String type = document.getString("TYPE");
-                                            ModelExercise modelExercise = new ModelExercise(name, length, description, sets, timer, isShooting, positions, type);
+                                            ModelExercise modelExercise = new ModelExercise(name, length, description, sets, isShooting, positions, type);
 
                                             modelExerciseArrayList.add(modelExercise);
                                             adapterExercise.notifyDataSetChanged();

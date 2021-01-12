@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".CompletedTrainings.ViewCompletedTraining.ViewCompletedTrainingFragment"
+    android:orientation="vertical"
+    android:background="@color/dark_grey"
+    >
+
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/view_completed_training_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/dark_grey"
+        app:titleTextColor="?attr/colorOnSecondary" >
+    </androidx.appcompat.widget.Toolbar>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/linear_layout"
+        >
+
+            <TextView
+
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/date_and_time"
+                android:text="Date and time"
+                android:layout_marginBottom="3dp"
+                android:textSize="14sp"
+                android:layout_marginHorizontal="30dp"
+                android:textColor="@color/disabled_text"/>
+
+            <TextView
+                android:id="@+id/view_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="20dp"
+                android:background="@drawable/round_edit_text"
+                android:drawablePadding="10dp"
+                android:maxLines="1"
+                android:padding="10dp"
+                android:textColor="?attr/colorOnSecondary"
+                android:textSize="16sp"
+                app:drawableStartCompat="@drawable/ic_outline_calendar" />
+        </LinearLayout>
+
+</LinearLayout>

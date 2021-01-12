@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EmpProjektna">
-        <activity android:name=".CompletedTrainings.CompletedTrainingsActivity"></activity>
+        <activity android:name=".CompletedTrainings.ViewCompletedTraining.ViewCompletedTrainingActivity"></activity>
+        <activity android:name=".CompletedTrainings.CompletedTrainingsActivity" />
         <activity
             android:name=".SearchUser.SearchUserActivity"
             android:windowSoftInputMode="adjustPan" />

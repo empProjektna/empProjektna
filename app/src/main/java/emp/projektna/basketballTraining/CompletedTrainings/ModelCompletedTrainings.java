@@ -22,7 +22,7 @@ public class ModelCompletedTrainings {
         this.name = name;
         this.exercises = exercises;
         this.trainingID = trainingID;
-        this.date = date;
+        this.date = date.split(",")[0];
     }
 
 

@@ -1,6 +1,7 @@
 package emp.projektna.basketballTraining.CompletedTrainings;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,9 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+import emp.projektna.basketballTraining.CompletedTrainings.ViewCompletedTraining.ViewCompletedTrainingActivity;
+import emp.projektna.basketballTraining.CompletedTrainings.ViewCompletedTraining.ViewCompletedTrainingFragment;
 import emp.projektna.basketballTraining.R;
-import emp.projektna.basketballTraining.Trainings.TrainigsActivity;
-import emp.projektna.basketballTraining.Trainings.UseTraining.UseTrainingFragment;
 
 public class AdapterCompletedTrainings extends RecyclerView.Adapter<AdapterCompletedTrainings.MyViewHolder> {
 
@@ -48,12 +49,12 @@ public class AdapterCompletedTrainings extends RecyclerView.Adapter<AdapterCompl
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment = new UseTrainingFragment();
+                Intent intent = new Intent(((CompletedTrainingsActivity) context).getApplicationContext(), ViewCompletedTrainingActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putString("trainingID", holder.trainingID);
                 bundle.putString("trainingName", holder.tv_name.getText().toString());
-                fragment.setArguments(bundle);
-                ((TrainigsActivity) context).setFragment(fragment);
+                intent.putExtras(bundle);
+                ((CompletedTrainingsActivity) context).startActivity(intent);
             }
         });
     }
