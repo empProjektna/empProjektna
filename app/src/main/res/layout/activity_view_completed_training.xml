@@ -3,11 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/dark_grey"
     tools:context=".CompletedTrainings.ViewCompletedTraining.ViewCompletedTrainingActivity">
     <FrameLayout
         android:id="@+id/trainings_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </FrameLayout>
+
 
 </RelativeLayout>

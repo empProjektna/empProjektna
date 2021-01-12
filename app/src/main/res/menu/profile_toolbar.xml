@@ -8,10 +8,12 @@
         app:showAsAction="ifRoom"
         >
     </item>
+    <!--
     <item
         android:id="@+id/action_settings"
         android:icon="@drawable/ic_outline_settings"
         android:title="Settings"
         app:showAsAction="ifRoom">
     </item>
+    -->
 </menu>

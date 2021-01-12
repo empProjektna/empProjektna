@@ -9,13 +9,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
 import emp.projektna.basketballTraining.CompletedTrainings.ViewCompletedTraining.ViewCompletedTrainingActivity;
-import emp.projektna.basketballTraining.CompletedTrainings.ViewCompletedTraining.ViewCompletedTrainingFragment;
 import emp.projektna.basketballTraining.R;
 
 public class AdapterCompletedTrainings extends RecyclerView.Adapter<AdapterCompletedTrainings.MyViewHolder> {
@@ -33,7 +31,7 @@ public class AdapterCompletedTrainings extends RecyclerView.Adapter<AdapterCompl
     @NonNull
     @Override
     public AdapterCompletedTrainings.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_training, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_completed_training, parent, false);
 
 
         return new MyViewHolder(view);

@@ -134,10 +134,9 @@
         </LinearLayout>
 
         <Button
-
             android:layout_marginStart="20dp"
             android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_weight="1.2"
             android:layout_gravity="bottom"
             android:layout_height="wrap_content"
             android:text="Positions"
@@ -172,7 +171,7 @@
             android:id="@+id/et_exercise_description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:inputType="textPersonName"
+            android:maxLines="8"
             android:textColor="@color/white"
             android:background="@drawable/round_edit_text"
             android:visibility="gone"

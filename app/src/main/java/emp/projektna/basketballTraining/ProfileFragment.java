@@ -118,8 +118,9 @@ public class ProfileFragment extends Fragment {
                         Intent intent = new Intent(getActivity(), EditProfileActivity.class);
                         startActivity(intent);
                         break;
-                    case R.id.action_settings:
+                   /* case R.id.action_settings:
                         break;
+                    */
                 }
                 return true;
             }

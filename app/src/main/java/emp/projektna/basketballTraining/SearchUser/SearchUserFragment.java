@@ -65,17 +65,18 @@ public class SearchUserFragment extends Fragment {
         searchBar.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                searchUsers(s.toString().toLowerCase());
+                searchUsers(s.toString().toUpperCase());
+                userAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                searchUsers(s.toString());
+                userAdapter.notifyDataSetChanged();
             }
         });
         return view;
@@ -83,18 +84,20 @@ public class SearchUserFragment extends Fragment {
 
 
     private void searchUsers(String s) {
-        Query query = FirebaseFirestore.getInstance().collection("Users").orderBy("Name").startAt(s).endAt("s" + "\uf8ff");
+        Query query = FirebaseFirestore.getInstance().collection("Users").orderBy("Name");
 
         query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                 mUsers.clear();
                 for (DocumentSnapshot snapshot : task.getResult().getDocuments()) {
-                    User user = new User(snapshot.getId(), snapshot.getString("Name"), snapshot.getString("Url"));
-                    mUsers.add(user);
+                    if (snapshot.getString("Name").toLowerCase().contains(s)) {
+                        User user = new User(snapshot.getId(), snapshot.getString("Name"), snapshot.getString("Url"));
+                        mUsers.add(user);
 
-                    userAdapter.notifyDataSetChanged();
+                    }
                 }
+                userAdapter.notifyDataSetChanged();
             }
         });
     }
@@ -115,6 +118,5 @@ public class SearchUserFragment extends Fragment {
                 }
             }
         });
-
     }
 }
